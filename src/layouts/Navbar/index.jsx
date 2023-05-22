@@ -1,6 +1,9 @@
 import React from "react";
 import styles from "./index.module.css";
 import { Outlet } from "react-router-dom";
+import { MdStars, MdNotificationsNone } from "react-icons/md"
+import { BsChatDots } from "react-icons/bs"
+import { IoMdAdd } from "react-icons/io"
 
 export default function Navbar() {
   return (
@@ -38,17 +41,17 @@ function UserActions() {
   );
 }
 
-function QuickAccessButton() {
-  return <button className={styles["quick-access-btn"]}></button>;
+function QuickAccessButton({ icon }) {
+  return <button className={styles["quick-access-btn"]}>{icon}</button>;
 }
 
 function QuickAccess() {
   return (
     <div className={styles["quick-access"]}>
-      <QuickAccessButton />
-      <QuickAccessButton />
-      <QuickAccessButton />
-      <QuickAccessButton />
+      <QuickAccessButton icon={<MdStars />} />
+      <QuickAccessButton icon={<BsChatDots />} />
+      <QuickAccessButton icon={<MdNotificationsNone />} />
+      <QuickAccessButton icon={<IoMdAdd />} />
     </div>
   );
 }
@@ -56,6 +59,11 @@ function QuickAccess() {
 function UserProfile() {
   return (
     <div className={styles["user-profile"]}>
+      <button className={styles["dropdown"]}>▼</button>
+      <div className={styles["user-info"]}>
+        <span>Username</span>
+        <span>Username</span>
+      </div>
       <div className={styles["profile-picture"]}></div>
     </div>
   );

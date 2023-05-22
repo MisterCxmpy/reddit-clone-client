@@ -15,8 +15,8 @@
 }
 
 .app-info {
-  width: 15%;
-  gap: 5px;
+  width: 10%;
+  gap: 10px;
 }
 .app-info .logo {
   width: 40px;
@@ -27,10 +27,11 @@
 .app-info .title {
   font-size: 22px;
   color: var(--primary-font-color-dark-mode);
+  white-space: nowrap;
 }
 
 .user-actions {
-  width: 55%;
+  width: 65%;
   gap: 15px;
 }
 .user-actions > select,
@@ -41,31 +42,52 @@
   border: none;
 }
 .user-actions .your-communities {
-  width: 25%;
+  width: 20%;
+  background: transparent;
+  color: var(--primary-font-color-dark-mode);
+  padding: 10px 20px;
 }
 .user-actions .search-bar {
-  width: 75%;
+  width: 80%;
 }
 .user-actions .search-bar > input {
   width: 100%;
   height: 40px;
+  padding: 10px 20px;
+  background: var(--primary-color-dark-mode);
 }
 
 .quick-access {
-  width: 15%;
+  width: 10%;
   justify-content: flex-end;
   gap: 5px;
 }
 .quick-access .quick-access-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 40px;
   width: 40px;
   border-radius: 10px;
+  background: transparent;
+  font-size: 24px;
+  color: var(--primary-font-color-dark-mode);
 }
 
 .user-profile {
   width: 15%;
-  gap: 5px;
+  gap: 10px;
   flex-direction: row-reverse;
+  justify-content: start;
+}
+.user-profile .dropdown {
+  margin-left: auto;
+}
+.user-profile .user-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: var(--primary-font-color-dark-mode);
 }
 .user-profile .profile-picture {
   width: 40px;
