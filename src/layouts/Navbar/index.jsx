@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import { MdStars, MdNotificationsNone } from "react-icons/md"
 import { BsChatDots } from "react-icons/bs"
 import { IoMdAdd } from "react-icons/io"
+import Filter from "../Filter";
 
 export default function Navbar() {
   return (
@@ -14,6 +15,7 @@ export default function Navbar() {
         <QuickAccess />
         <UserProfile />
       </div>
+      <Filter />
       <Outlet />
     </>
   );
@@ -32,7 +34,7 @@ function UserActions() {
   return (
     <div className={styles["user-actions"]}>
       <select className={styles["your-communities"]}>
-        <option value="Your Communities">Your Communities</option>
+        <option value="Home">Home</option>
       </select>
       <form className={styles["search-bar"]}>
         <input type="text" placeholder="Search For Anything" />

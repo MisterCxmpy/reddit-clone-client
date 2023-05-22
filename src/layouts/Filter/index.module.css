@@ -1,0 +1,63 @@
+.filter {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  gap: 15px;
+}
+.filter > div {
+  height: 48px;
+}
+.filter .tags {
+  width: 67%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+}
+.filter .tags::-webkit-scrollbar {
+  display: none;
+}
+.filter .tags .tag {
+  height: -moz-min-content;
+  height: min-content;
+  padding: 7.5px 15px;
+  background: var(--primary-color-dark-mode);
+  color: var(--primary-font-color-dark-mode);
+  border-radius: 5px;
+}
+.filter .filter-options {
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: end;
+  gap: 15px;
+  color: var(--primary-font-color-dark-mode);
+}
+.filter .filter-options .menu-btn {
+  height: -moz-min-content;
+  height: min-content;
+  padding: 7.5px 15px;
+  background: var(--primary-color-dark-mode);
+  color: var(--primary-font-color-dark-mode);
+  border-radius: 5px;
+  text-align: left;
+  width: 110px;
+}
+.filter .filter-options .filters {
+  height: -moz-min-content;
+  height: min-content;
+  padding: 7.5px 15px;
+  background: var(--primary-color-dark-mode);
+  color: var(--primary-font-color-dark-mode);
+  border-radius: 5px;
+  text-align: left;
+  width: 200px;
+}/*# sourceMappingURL=index.module.css.map */
