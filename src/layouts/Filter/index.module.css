@@ -41,6 +41,11 @@
   gap: 15px;
   color: var(--primary-font-color-dark-mode);
 }
+.filter .filter-options > svg {
+  height: 24px;
+  width: 24px;
+  color: var(--secondary-font-color-dark-mode);
+}
 .filter .filter-options .menu-btn {
   height: -moz-min-content;
   height: min-content;
