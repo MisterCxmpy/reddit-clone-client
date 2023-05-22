@@ -1,0 +1,27 @@
+.navbar {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar > div {
+  height: 100%;
+}
+
+.app-info {
+  width: 15%;
+}
+
+.user-actions {
+  width: 55%;
+}
+
+.quick-access {
+  width: 15%;
+}
+
+.user-profile {
+  width: 15%;
+}/*# sourceMappingURL=index.module.css.map */

@@ -1,0 +1,22 @@
+:root {
+  --main-background: #303030;
+  /* dark mode */
+  --primary-font-color-dark-mode: #FAFAFA;
+  --secondary-font-color-dark-mode: #707070;
+  --primary-color-dark-mode: #262626;
+  --secondary-color-dark-mode: #282828;
+  --primary-icon-color-dark-mode: #707070;
+  --primary-button-color-dark-mode: #C8CBCD;
+  /* light mode */
+  --font-color-light-mode: #202020;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--main-background);
+}
