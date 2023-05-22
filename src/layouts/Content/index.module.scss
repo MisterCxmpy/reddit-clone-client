@@ -1,0 +1,83 @@
+.container {
+  height: auto;
+  margin: 48px 225px;
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    >div {
+      height: 100%;
+    }
+
+    .posts {
+      width: 70%;
+
+      .post {
+        width: 100%;
+        min-height: 175px;
+        background: var(--secondary-color-dark-mode);
+        border-radius: 7px;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+
+        .votes {
+          width: 60px;
+          min-height: 175px;
+          height: 100%;
+          background: var(--primary-color-dark-mode);
+          color: var(--primary-font-color-dark-mode);
+          border-top-left-radius: 7px;
+          border-bottom-left-radius: 7px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: start;
+          padding: 15px;
+          gap: 15px;
+
+          > button {
+            background: transparent;
+            width: 24px;
+            height: 24px;
+            font-size: 24px;
+            color: var(--secondary-font-color-dark-mode);
+          }
+        }
+
+        .post-content {
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          .post-author, .post-actions {
+            height: max-content;
+          }
+
+          .post-author {
+            .community-name, .author {
+              color: var(--secondary-font-color-dark-mode);
+              font-size: 14px;
+            }
+          }
+
+          .post-message {
+            margin-bottom: auto;
+            font-size: 20px;
+            color: var(--primary-font-color-dark-mode);
+          }
+        }
+      }
+    }
+
+    .community-summary {
+      width: 30%;
+    }
+  }
+}
+
+
+

@@ -1,0 +1,68 @@
+.container {
+  height: auto;
+  margin: 48px 225px;
+}
+.container .content {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.container .content > div {
+  height: 100%;
+}
+.container .content .posts {
+  width: 70%;
+}
+.container .content .posts .post {
+  width: 100%;
+  min-height: 175px;
+  background: var(--secondary-color-dark-mode);
+  border-radius: 7px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.container .content .posts .post .votes {
+  width: 60px;
+  min-height: 175px;
+  height: 100%;
+  background: var(--primary-color-dark-mode);
+  color: var(--primary-font-color-dark-mode);
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 15px;
+  gap: 15px;
+}
+.container .content .posts .post .votes > button {
+  background: transparent;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  color: var(--secondary-font-color-dark-mode);
+}
+.container .content .posts .post .post-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.container .content .posts .post .post-content .post-author, .container .content .posts .post .post-content .post-actions {
+  height: -moz-max-content;
+  height: max-content;
+}
+.container .content .posts .post .post-content .post-author .community-name, .container .content .posts .post .post-content .post-author .author {
+  color: var(--secondary-font-color-dark-mode);
+  font-size: 14px;
+}
+.container .content .posts .post .post-content .post-message {
+  margin-bottom: auto;
+  font-size: 20px;
+  color: var(--primary-font-color-dark-mode);
+}
+.container .content .community-summary {
+  width: 30%;
+}/*# sourceMappingURL=index.module.css.map */
