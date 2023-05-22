@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&family=Ubuntu&family=Varela&display=swap');
+
 :root {
   --main-background: #303030;
   /* dark mode */
@@ -15,6 +17,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border: none;
+
+  font-family: 'Inter', sans-serif;
 }
 
 html {
