@@ -27,7 +27,7 @@
   height: -moz-min-content;
   height: min-content;
   padding: 7.5px 15px;
-  background: var(--primary-color-dark-mode);
+  background: var(--accent-color);
   color: var(--primary-font-color-dark-mode);
   border-radius: 5px;
 }

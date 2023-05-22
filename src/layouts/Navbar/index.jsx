@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import { MdStars, MdNotificationsNone } from "react-icons/md"
 import { BsChatDots } from "react-icons/bs"
 import { IoMdAdd } from "react-icons/io"
+import { AiOutlineSearch } from "react-icons/ai"
 import Filter from "../Filter";
 
 export default function Navbar() {
@@ -37,6 +38,7 @@ function UserActions() {
         <option value="Home">Home</option>
       </select>
       <form className={styles["search-bar"]}>
+        <AiOutlineSearch />
         <input type="text" placeholder="Search For Anything" />
       </form>
     </div>

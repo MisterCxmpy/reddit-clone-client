@@ -35,11 +35,25 @@
   gap: 15px;
 }
 .user-actions > select,
-.user-actions > form,
+.user-actions > form {
+  height: 42px;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
 .user-actions > form > input {
   height: 42px;
   border-radius: 5px;
   border: none;
+}
+.user-actions > form > svg {
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  right: 10px;
+  color: var(--secondary-font-color-dark-mode);
 }
 .user-actions .your-communities {
   width: 20%;

@@ -46,9 +46,23 @@
   gap: 15px;
 
   > select,
-  > form,
-  > form > input {
+  > form {
     @include input-styles;
+    @include align-center();
+    position: relative;
+  }
+
+  > form {
+    > input {
+      @include input-styles;
+    }
+    > svg {
+      position: absolute;
+      height: 24px;
+      width: 24px;
+      right: 10px;
+      color: var(--secondary-font-color-dark-mode);
+    }
   }
 
   .your-communities {
