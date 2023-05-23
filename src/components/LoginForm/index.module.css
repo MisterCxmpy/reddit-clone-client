@@ -14,35 +14,50 @@
 
 .container {
   width: 400px;
-  height: 600px;
-  padding: 30px;
+  padding: 60px;
   position: fixed;
   background: white;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  /* New properties */
   right: 0;
   bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 7px;
+}
+.container .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 24px;
+  width: 24px;
+  font-size: 24px;
+  background: white;
+  cursor: pointer;
+}
+.container > h3 {
+  margin: 10px 0;
 }
 
 .login-form {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 40px;
   width: 100%;
 }
 .login-form .inputs {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 20px;
+  gap: 25px;
 }
 .login-form .inputs .input-field {
   width: 100%;
   position: relative;
 }
+.login-form .inputs .submit,
 .login-form .inputs .input-field > input {
   padding: 12px 24px;
   width: 100%;
@@ -51,8 +66,14 @@
   border-radius: 15px;
   background: var(--secondary-button-color-dark-mode);
 }
+.login-form .inputs .submit:focus,
 .login-form .inputs .input-field > input:focus {
   outline: none;
+}
+.login-form .inputs .submit {
+  cursor: pointer;
+  background: var(--accent-color);
+  color: var(--primary-font-color-dark-mode);
 }
 .login-form .inputs .input-field > span {
   position: absolute;
@@ -64,10 +85,14 @@
   pointer-events: none;
   transition: 0.3s;
 }
+.login-form .inputs .input-field > input:hover ~ span,
 .login-form .inputs .input-field > input:focus ~ span,
 .login-form .inputs .input-field > input:valid ~ span {
   top: -30px;
   left: -10px;
   color: var(--primary-font-color-light-mode);
   font-size: 12px;
+}
+.login-form .input-help {
+  font-size: 13px;
 }/*# sourceMappingURL=index.module.css.map */

@@ -14,16 +14,33 @@
 
 .container {
   width: 400px;
-  height: 600px;
-  padding: 30px;
+  padding: 60px;
   position: fixed;
   background: white;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  /* New properties */
   right: 0;
   bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 7px;
+
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 24px;
+    width: 24px;
+    font-size: 24px;
+    background: white;
+    cursor: pointer;
+  }
+
+  >h3 {
+    margin: 10px 0;
+  }
 }
 
 
@@ -31,20 +48,20 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 40px;
   width: 100%;
 
   .inputs {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 20px;
+    gap: 25px;
 
     .input-field {
       width: 100%;
       position: relative;
     }
 
+    .submit,
     .input-field > input {
       padding: 12px 24px;
       width: 100%;
@@ -58,6 +75,12 @@
       }
     }
 
+    .submit {
+      cursor: pointer;
+      background: var(--accent-color);
+      color: var(--primary-font-color-dark-mode);
+    }
+
     .input-field > span {
       position: absolute;
       padding: 12px 24px;
@@ -69,6 +92,7 @@
       transition: 0.3s;
     }
 
+    .input-field > input:hover ~ span,
     .input-field > input:focus ~ span,
     .input-field > input:valid ~ span {
       top: -30px;
@@ -76,5 +100,9 @@
       color: var(--primary-font-color-light-mode);
       font-size: 12px;
     }
+  }
+
+  .input-help {
+    font-size: 13px;
   }
 }

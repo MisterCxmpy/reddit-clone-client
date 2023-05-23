@@ -103,7 +103,7 @@ function UserProfile({ user }) {
         <div className={styles["login-signup-options"]}>
           <button className={styles["signup-btn"]}>Sign Up</button>
           <button onClick={toggleLogin} className={styles["login-btn"]}>Log In</button>
-          <LoginForm state={showLogin} />
+          <LoginForm state={showLogin} setState={toggleLogin} />
         </div>
       )}
     </div>
