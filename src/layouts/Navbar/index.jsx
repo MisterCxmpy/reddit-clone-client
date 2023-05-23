@@ -16,7 +16,9 @@ export default function Navbar() {
         <QuickAccess />
         <UserProfile />
       </div>
-      <Filter />
+      <div className={styles["filter"]}>
+        <Filter />
+      </div>
       <Outlet />
     </>
   );

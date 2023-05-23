@@ -12,7 +12,10 @@
     }
 
     .posts {
+      display: flex;
       width: 70%;
+      flex-direction: column;
+      gap: 20px;
 
       .post {
         width: 100%;
@@ -48,16 +51,15 @@
         }
 
         .post-content {
-          padding: 10px;
           display: flex;
           flex-direction: column;
-          gap: 15px;
 
           .post-author, .post-actions {
             height: max-content;
           }
 
           .post-author {
+            padding: 7.5px 15px;
             .community-name, .author {
               color: var(--secondary-font-color-dark-mode);
               font-size: 14px;
@@ -65,9 +67,31 @@
           }
 
           .post-message {
+            padding: 7.5px 15px;
             margin-bottom: auto;
             font-size: 20px;
             color: var(--primary-font-color-dark-mode);
+          }
+
+          .post-actions {
+            display: flex;
+            flex-direction: row;
+            gap: 2.5px;
+
+            .action {
+              padding: 7.5px 15px;
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              background: transparent;
+              color: var(--secondary-font-color-dark-mode);
+              font-size: 14px;
+              cursor: pointer;
+
+              &:hover {
+                background: #303030;
+              }
+            }
           }
         }
       }
@@ -78,6 +102,3 @@
     }
   }
 }
-
-
-
