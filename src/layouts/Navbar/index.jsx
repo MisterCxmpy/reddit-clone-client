@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./index.module.css";
 import { Outlet } from "react-router-dom";
 import { MdStars, MdNotificationsNone } from "react-icons/md";
@@ -7,6 +7,7 @@ import { IoMdAdd } from "react-icons/io";
 import { AiOutlineSearch } from "react-icons/ai";
 import Filter from "../Filter";
 import { useAuth } from "../../contexts/authContext";
+import LoginForm from "../../components/LoginForm";
 
 export default function Navbar() {
   const user = useAuth();
@@ -66,6 +67,27 @@ function QuickAccess() {
 }
 
 function UserProfile({ user }) {
+
+  const [showLogin, setShowLogin] = useState(false)
+
+  const toggleLogin = () => {
+    setShowLogin(!showLogin);
+    
+    if (!showLogin) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }
+
+  const disableScroll = () => {
+    document.body.classList.add('no-scroll');
+  };
+
+  const enableScroll = () => {
+    document.body.classList.remove('no-scroll');
+  };
+
   return (
     <div className={styles["user-profile"]} style={user ? {justifyContent: "start"} : {justifyContent: "end"}}>
       {user ? (
@@ -80,7 +102,8 @@ function UserProfile({ user }) {
       ) : (
         <div className={styles["login-signup-options"]}>
           <button className={styles["signup-btn"]}>Sign Up</button>
-          <button className={styles["login-btn"]}>Log In</button>
+          <button onClick={toggleLogin} className={styles["login-btn"]}>Log In</button>
+          <LoginForm state={showLogin} />
         </div>
       )}
     </div>

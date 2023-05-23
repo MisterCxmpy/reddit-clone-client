@@ -92,6 +92,7 @@
   width: 30%;
   position: sticky;
   top: 49px;
+  z-index: -1;
 }
 .container .content .community-summary .summary {
   width: 100%;

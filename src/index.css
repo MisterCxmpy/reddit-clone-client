@@ -2,7 +2,7 @@
 
 :root {
   --main-background: #303030;
-  --accent-color: #374357;
+  --accent-color: #6c55f0;
   --hover-color: #202020;
   /* dark mode */
   --primary-font-color-dark-mode: #FAFAFA;
@@ -11,6 +11,7 @@
   --secondary-color-dark-mode: #282828;
   --primary-icon-color-dark-mode: #707070;
   --primary-button-color-dark-mode: #C8CBCD;
+  --secondary-button-color-dark-mode: #e9e9e9;
   /* light mode */
   --font-color-light-mode: #202020;
 }
@@ -26,4 +27,8 @@
 
 html {
   background: var(--main-background);
+}
+
+.no-scroll {
+  overflow: hidden;
 }
