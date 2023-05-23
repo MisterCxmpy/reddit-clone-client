@@ -1,0 +1,9 @@
+.container {
+  width: -moz-max-content;
+  width: max-content;
+  padding: 30px;
+  position: absolute;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+}/*# sourceMappingURL=index.module.css.map */

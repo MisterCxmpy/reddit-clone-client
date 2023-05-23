@@ -20,7 +20,6 @@ export default function Content({ id }) {
           <Post />
           <Post />
           <Post />
-          {console.log(id)}
         </div>
         <CommunitySummary />
       </div>

@@ -120,6 +120,23 @@
   background: white;
   border-radius: 50%;
 }
+.user-profile .login-signup-options {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  width: 100%;
+}
+.user-profile .login-signup-options .login-btn, .user-profile .login-signup-options .signup-btn {
+  height: -moz-min-content;
+  height: min-content;
+  padding: 7.5px 15px;
+  background: var(--accent-color);
+  color: var(--primary-font-color-dark-mode);
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  flex: 1;
+}
 
 @media only screen and (max-width: 600px) {
   .app-info {
