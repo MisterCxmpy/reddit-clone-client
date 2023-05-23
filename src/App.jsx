@@ -8,6 +8,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Navbar />}>
         <Route index element={<Main />} />
+        <Route path='/c/:id' element={<Main />} />
       </Route>
       {/* <Route path="*" element={<ErrorPage />} /> */}
     </Routes>

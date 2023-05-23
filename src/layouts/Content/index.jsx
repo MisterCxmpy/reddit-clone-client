@@ -2,7 +2,7 @@ import styles from "./index.module.css"
 import { TbArrowBigUp, TbArrowBigDown } from "react-icons/tb"
 import { BsChatSquare, BsShare } from "react-icons/bs"
 
-export default function Content() {
+export default function Content({ id }) {
   return (
     <div className={styles["container"]}>
       <div className={styles["content"]}>
@@ -20,6 +20,7 @@ export default function Content() {
           <Post />
           <Post />
           <Post />
+          {console.log(id)}
         </div>
         <CommunitySummary />
       </div>
