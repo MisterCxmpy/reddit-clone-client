@@ -16,7 +16,7 @@
   width: 400px;
   padding: 60px;
   position: fixed;
-  background: white;
+  background: var(--primary-font-color-dark-mode);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -34,7 +34,7 @@
     height: 24px;
     width: 24px;
     font-size: 24px;
-    background: white;
+    background: transparent;
     cursor: pointer;
   }
 

@@ -10,7 +10,7 @@ import { useAuth } from "../../contexts/authContext";
 import LoginForm from "../../components/LoginForm";
 
 export default function Navbar() {
-  const user = useAuth();
+  const { user } = useAuth();
 
   return (
     <>

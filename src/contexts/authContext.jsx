@@ -41,6 +41,21 @@ export const AuthProvider = ({ children }) => {
     navigate('/');
   }
 
+  useEffect(() => { // check for cachedUser data to login and redirect user
+    let cached = localStorage.getItem('user');
+
+    if (!cached) return;
+    if (cached) navigate('/');
+    if (cached !== 'undefined') {
+      let cachedUser = JSON.parse(cached)
+
+      if (!user) {
+        setUser(cachedUser)
+        navigate('/')
+      }
+    }
+  }, []);
+
   useEffect(() => {
     console.log(user);
   }, [user])
