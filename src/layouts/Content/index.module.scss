@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: row;
     height: 100%;
+    gap: 20px;
 
     >div {
       height: 100%;
@@ -89,7 +90,7 @@
               cursor: pointer;
 
               &:hover {
-                background: #303030;
+                background: var(--hover-color);
               }
             }
           }
@@ -99,6 +100,69 @@
 
     .community-summary {
       width: 30%;
+      position: sticky;
+      top: 49px;
+
+      .summary {
+        width: 100%;
+        min-height: 300px;
+        background-color: var(--secondary-color-dark-mode);
+        border-radius: 7px;
+
+        .community-image {
+          width: 100%;
+          height: 90px;
+          border-top-left-radius: 7px;;
+          border-top-right-radius: 7px;;
+          background-image:url(https://w0.peakpx.com/wallpaper/789/352/HD-wallpaper-sugar-pop-art-graffiti-stickers-colorful.jpg);
+          object-fit: cover;
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-position-y: -420px;
+        }
+
+        .inner-content {
+          display: flex;
+          padding: 15px;
+          flex-direction: column;
+          gap: 15px;
+
+          .community-name, .summary-content {
+            color: var(--primary-font-color-dark-mode);
+          }
+
+          .summary-content {
+            font-size: 18px;
+          }
+
+          .btn {
+            width: 100%;
+            height: 55px;
+            font-size: 20px;
+            border-radius: 7px;
+            cursor: pointer;
+          }
+
+          .create-post {
+            background: var(--primary-button-color-dark-mode);
+            color: var(--font-color-light-mode);
+
+            &:hover {
+              background: #a8a8a8;
+            }
+          }
+
+          .create-community {
+            background: var(--secondary-color-dark-mode);
+            border: 1px solid var(--primary-button-color-dark-mode);
+            color: var(--primary-font-color-dark-mode);
+
+            &:hover {
+              background: #353535;
+            }
+          }
+        }
+      }
     }
   }
 }

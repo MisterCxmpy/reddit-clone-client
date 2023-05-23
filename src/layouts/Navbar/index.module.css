@@ -57,6 +57,7 @@
   width: 24px;
   right: 10px;
   color: var(--secondary-font-color-dark-mode);
+  cursor: pointer;
 }
 .user-actions .your-communities {
   width: 20%;
@@ -86,9 +87,13 @@
   height: 40px;
   width: 40px;
   border-radius: 10px;
-  background: transparent;
+  background: var(--main-background);
   font-size: 24px;
   color: var(--secondary-font-color-dark-mode);
+  cursor: pointer;
+}
+.quick-access .quick-access-btn:hover {
+  background: var(--hover-color);
 }
 
 .user-profile {

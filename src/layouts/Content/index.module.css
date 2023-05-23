@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: row;
   height: 100%;
+  gap: 20px;
 }
 .container .content > div {
   height: 100%;
@@ -84,8 +85,62 @@
   cursor: pointer;
 }
 .container .content .posts .post .post-content .post-actions .action:hover {
-  background: #303030;
+  background: var(--hover-color);
 }
 .container .content .community-summary {
   width: 30%;
+  position: sticky;
+  top: 49px;
+}
+.container .content .community-summary .summary {
+  width: 100%;
+  min-height: 300px;
+  background-color: var(--secondary-color-dark-mode);
+  border-radius: 7px;
+}
+.container .content .community-summary .summary .community-image {
+  width: 100%;
+  height: 90px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  background-image: url(https://w0.peakpx.com/wallpaper/789/352/HD-wallpaper-sugar-pop-art-graffiti-stickers-colorful.jpg);
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position-y: -420px;
+}
+.container .content .community-summary .summary .inner-content {
+  display: flex;
+  padding: 15px;
+  flex-direction: column;
+  gap: 15px;
+}
+.container .content .community-summary .summary .inner-content .community-name, .container .content .community-summary .summary .inner-content .summary-content {
+  color: var(--primary-font-color-dark-mode);
+}
+.container .content .community-summary .summary .inner-content .summary-content {
+  font-size: 18px;
+}
+.container .content .community-summary .summary .inner-content .btn {
+  width: 100%;
+  height: 55px;
+  font-size: 20px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.container .content .community-summary .summary .inner-content .create-post {
+  background: var(--primary-button-color-dark-mode);
+  color: var(--font-color-light-mode);
+}
+.container .content .community-summary .summary .inner-content .create-post:hover {
+  background: #a8a8a8;
+}
+.container .content .community-summary .summary .inner-content .create-community {
+  background: var(--secondary-color-dark-mode);
+  border: 1px solid var(--primary-button-color-dark-mode);
+  color: var(--primary-font-color-dark-mode);
+}
+.container .content .community-summary .summary .inner-content .create-community:hover {
+  background: #353535;
 }/*# sourceMappingURL=index.module.css.map */

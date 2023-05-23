@@ -3,6 +3,7 @@
 :root {
   --main-background: #303030;
   --accent-color: #374357;
+  --hover-color: #202020;
   /* dark mode */
   --primary-font-color-dark-mode: #FAFAFA;
   --secondary-font-color-dark-mode: #707070;

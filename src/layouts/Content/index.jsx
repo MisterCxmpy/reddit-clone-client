@@ -21,11 +21,13 @@ export default function Content() {
           <Post />
           <Post />
         </div>
-        <div className={styles["community-summary"]}></div>
+        <CommunitySummary />
       </div>
     </div>
   );
 }
+
+//#region Posts
 
 function Votes() {
   return (
@@ -85,3 +87,37 @@ function Post() {
     </div>
   );
 }
+
+//#endregion
+
+//#region Summary
+
+function CommunityImage() {
+  return <div className={styles["community-image"]}></div>;
+}
+
+function InnerContent() {
+  return (
+    <div className={styles["inner-content"]}>
+      <span className={styles["community-name"]}>c/Gaming</span>
+      <p className={styles["summary-content"]}>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium nobis placeat at eaque, voluptas eos sapiente magnam, aliquam commodi maiores libero molestias dicta itaque porro iste fugiat autem nulla doloremque?
+      </p>
+      <button className={`${styles["create-post"]} ${styles["btn"]}`}>Create Post</button>
+      <button className={`${styles["create-community"]} ${styles["btn"]}`}>Create Community</button>
+    </div>
+  );
+}
+
+function CommunitySummary() {
+  return (
+    <div className={styles["community-summary"]}>
+      <div className={styles["summary"]}>
+        <CommunityImage />
+        <InnerContent />
+      </div>
+    </div>
+  );
+}
+
+//#endregion
