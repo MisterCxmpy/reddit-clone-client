@@ -67,18 +67,17 @@ function QuickAccess() {
 }
 
 function UserProfile({ user }) {
-
-  const [showLogin, setShowLogin] = useState(false)
+  const [showLogin, setShowLogin] = useState(false);
 
   const toggleLogin = () => {
     setShowLogin(!showLogin);
-    
+
     if (!showLogin) {
       disableScroll();
     } else {
       enableScroll();
     }
-  }
+  };
 
   const disableScroll = () => {
     document.body.classList.add('no-scroll');
@@ -91,21 +90,39 @@ function UserProfile({ user }) {
   return (
     <div className={styles["user-profile"]} style={user ? {justifyContent: "start"} : {justifyContent: "end"}}>
       {user ? (
-        <>
-          <button className={styles["dropdown"]}>▼</button>
-          <div className={styles["user-info"]}>
-            <span>Username</span>
-            <span>Username</span>
-          </div>
-          <div className={styles["profile-picture"]}></div>
-        </>
+        <UserInfo user={user} />
       ) : (
-        <div className={styles["login-signup-options"]}>
-          <button className={styles["signup-btn"]}>Sign Up</button>
-          <button onClick={toggleLogin} className={styles["login-btn"]}>Log In</button>
-          <LoginForm state={showLogin} setState={toggleLogin} />
-        </div>
+        <LoginSignupOptions showLogin={showLogin} toggleLogin={toggleLogin} />
       )}
+    </div>
+  );
+}
+
+function UserInfo({ user }) {
+  return (
+    <div className={styles["user-info"]}>
+      <button className={styles["user-dropdown"]}>
+        <span className={styles["outer-span"]}>
+          <span>
+            <div className={styles["profile-picture"]}></div>
+            <span>
+              <span>{user.username}</span>
+              <span>{user.score} Score</span>
+            </span>
+          </span>
+          <div className={styles["dropdown-icon"]} />
+        </span>
+      </button>
+    </div>
+  );
+}
+
+function LoginSignupOptions({ showLogin, toggleLogin }) {
+  return (
+    <div className={styles["login-signup-options"]}>
+      <button className={styles["signup-btn"]}>Sign Up</button>
+      <button onClick={toggleLogin} className={styles["login-btn"]}>Log In</button>
+      <LoginForm state={showLogin} setState={toggleLogin} />
     </div>
   );
 }

@@ -45,7 +45,6 @@ export const AuthProvider = ({ children }) => {
     let cached = localStorage.getItem('user');
 
     if (!cached) return;
-    if (cached) navigate('/');
     if (cached !== 'undefined') {
       let cachedUser = JSON.parse(cached)
 

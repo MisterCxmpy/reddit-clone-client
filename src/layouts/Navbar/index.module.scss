@@ -117,7 +117,7 @@
   justify-content: start;
 
   .dropdown {
-    margin-left: auto;
+    width: 100%;
     background: transparent;
     font-size: 20px;
     color: var(--secondary-font-color-dark-mode)
@@ -126,12 +126,68 @@
   .user-info {
     @include align-center();
     flex-direction: column;
+    justify-content: start;
     color: var(--primary-font-color-dark-mode);
+    font-size: 14px;
+    width: 100%;
+    
+    .user-dropdown {
+      @include align-center();
+      flex-direction: row;
+      text-align: left;
+      width: 100%;
+      background: transparent;
+      padding-left: 5px;
+      cursor: pointer;
+
+      .outer-span {
+        @include align-center();
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        position: relative;
+
+        >span {
+          @include align-center();
+          flex-direction: row;
+          gap: 10px;
+
+          >span {
+            @include align-center();
+            flex-direction: column;
+            width: 100%;
+            
+            >span {
+              @include align-center();
+              justify-content: start;
+              width: 100%;
+              color: var(--primary-font-color-dark-mode);
+            }
+          }
+        }
+
+        .dropdown-icon {
+          font-size: 8px;
+          font-weight: 400;
+          height: 8px;
+          line-height: 8px;
+          vertical-align: middle;
+          width: 8px;
+          border-bottom: 2px solid var(--primary-font-color-dark-mode);
+          border-right: 2px solid var(--primary-font-color-dark-mode);
+          transform: rotate(45deg);
+          transform-origin: right;
+          position: absolute;
+          right: 6px;
+          
+        }
+      }
+    }
   }
 
   .profile-picture {
-    width: 36px;
-    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
     background: white;
     border-radius: 50%;
   }
