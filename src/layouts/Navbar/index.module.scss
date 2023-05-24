@@ -39,7 +39,7 @@
 
   .title {
     font-size: 22px;
-    color: var(--primary-font-color-dark-mode);
+    color: var(--primary-font-color);
     white-space: nowrap;
   }
 }
@@ -64,7 +64,7 @@
       height: 24px;
       width: 24px;
       right: 10px;
-      color: var(--secondary-font-color-dark-mode);
+      color: var(--secondary-font-color);
       cursor: pointer;
     }
   }
@@ -72,7 +72,7 @@
   .your-communities {
     width: 20%;
     background: transparent;
-    color: var(--primary-font-color-dark-mode);
+    color: var(--primary-font-color);
     padding: 10px 20px;
   }
 
@@ -83,7 +83,7 @@
       width: 100%;
       height: 40px;
       padding: 10px 20px;
-      background: var(--primary-color-dark-mode);
+      background: var(--primary-color);
     }
   }
 }
@@ -101,7 +101,7 @@
     border-radius: 10px;
     background: var(--main-background);
     font-size: 24px;
-    color: var(--secondary-font-color-dark-mode);
+    color: var(--secondary-font-color);
     cursor: pointer;
 
     &:hover {
@@ -120,14 +120,14 @@
     width: 100%;
     background: transparent;
     font-size: 20px;
-    color: var(--secondary-font-color-dark-mode)
+    color: var(--secondary-font-color)
   }
 
   .user-info {
     @include align-center();
     flex-direction: column;
     justify-content: start;
-    color: var(--primary-font-color-dark-mode);
+    color: var(--primary-font-color);
     font-size: 14px;
     width: 100%;
     
@@ -161,7 +161,7 @@
               @include align-center();
               justify-content: start;
               width: 100%;
-              color: var(--primary-font-color-dark-mode);
+              color: var(--primary-font-color);
             }
           }
         }
@@ -173,8 +173,8 @@
           line-height: 8px;
           vertical-align: middle;
           width: 8px;
-          border-bottom: 2px solid var(--primary-font-color-dark-mode);
-          border-right: 2px solid var(--primary-font-color-dark-mode);
+          border-bottom: 2px solid var(--primary-font-color);
+          border-right: 2px solid var(--primary-font-color);
           transform: rotate(45deg);
           transform-origin: right;
           position: absolute;
@@ -202,7 +202,7 @@
       height: min-content;
       padding: 7.5px 15px;
       background: var(--accent-color);
-      color: var(--primary-font-color-dark-mode);
+      color: var(--primary-font-color);
       border-radius: 5px;
       font-size: 16px;
       cursor: pointer;
@@ -240,7 +240,7 @@
     .your-communities {
       width: 10%;
       background: transparent;
-      color: var(--primary-font-color-dark-mode);
+      color: var(--primary-font-color);
       padding: 10px 20px;
     }
   
@@ -251,7 +251,7 @@
         width: 100%;
         height: 40px;
         padding: 10px 20px;
-        background: var(--primary-color-dark-mode);
+        background: var(--primary-color);
       }
     }
   }

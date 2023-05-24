@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
     if (!response.ok) throw new Error(user.message); // if theres any error, throw one and with that data
 
     saveUser({ ...user}) // save and cache user
+    document.body.classList.remove('no-scroll');
     return user;
   }
 

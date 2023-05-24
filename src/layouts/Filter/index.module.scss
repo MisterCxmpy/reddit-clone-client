@@ -38,7 +38,7 @@
       height: min-content;
       padding: 7.5px 15px;
       background: var(--accent-color);
-      color: var(--primary-font-color-dark-mode);
+      color: var(--primary-font-color);
       border-radius: 5px;
     }
   }
@@ -49,19 +49,19 @@
     flex-direction: row;
     justify-content: end;
     gap: 15px;
-    color: var(--primary-font-color-dark-mode);
+    color: var(--primary-font-color);
 
     >svg {
       height: 24px;
       width: 24px;
-      color: var(--secondary-font-color-dark-mode);
+      color: var(--secondary-font-color);
     }
 
     .menu-btn {
       height: min-content;
       padding: 7.5px 15px;
-      background: var(--primary-color-dark-mode);
-      color: var(--primary-font-color-dark-mode);
+      background: var(--primary-color);
+      color: var(--primary-font-color);
       border-radius: 5px;
       text-align: left;
       width: 110px;
@@ -70,8 +70,8 @@
     .filters {
       height: min-content;
       padding: 7.5px 15px;
-      background: var(--primary-color-dark-mode);
-      color: var(--primary-font-color-dark-mode);
+      background: var(--primary-color);
+      color: var(--primary-font-color);
       border-radius: 5px;
       text-align: left;
       width: 200px;
