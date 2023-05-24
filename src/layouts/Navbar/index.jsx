@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
 import { Outlet } from "react-router-dom";
 import { MdStars, MdNotificationsNone } from "react-icons/md";
@@ -8,6 +8,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Filter from "../Filter";
 import { useAuth } from "../../contexts/authContext";
 import LoginForm from "../../components/LoginForm";
+import UserSideMenu from "../../components/UserSideMenu";
 
 export default function Navbar() {
   const { user } = useAuth();
@@ -99,9 +100,35 @@ function UserProfile({ user }) {
 }
 
 function UserInfo({ user }) {
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const menuRef = useRef(null);
+
+  const toggleMenu = () => {
+    setShowUserMenu(!showUserMenu);
+  };
+
+  const handleClickOutside = (event) => {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target) &&
+      event.target !== menuRef.current.previousSibling
+    ) {
+      setShowUserMenu(false);
+    }
+  };
+  
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={styles["user-info"]}>
-      <button className={styles["user-dropdown"]}>
+      <button onClick={toggleMenu} className={styles["user-dropdown"]}>
         <span className={styles["outer-span"]}>
           <span>
             <div className={styles["profile-picture"]}></div>
@@ -113,6 +140,7 @@ function UserInfo({ user }) {
           <div className={styles["dropdown-icon"]} />
         </span>
       </button>
+      <UserSideMenu state={showUserMenu} ref={menuRef} />
     </div>
   );
 }
