@@ -1,26 +1,32 @@
-import styles from "./index.module.css"
-import { TbArrowBigUp, TbArrowBigDown } from "react-icons/tb"
-import { BsChatSquare, BsShare } from "react-icons/bs"
+import styles from "./index.module.css";
+import { TbArrowBigUp, TbArrowBigDown } from "react-icons/tb";
+import { BsChatSquare, BsShare } from "react-icons/bs";
+import CreateForm from "../../components/CreateForm";
 
-export default function Content({ id }) {
+export default function Content({ id, create }) {
   return (
     <div className={styles["container"]}>
       <div className={styles["content"]}>
-        <div className={styles["posts"]}>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-        </div>
+        {create ? (
+          <CreateForm />
+        ) : (
+          <div className={styles["posts"]}>
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+            <Post />
+          </div>
+        )}
+
         <CommunitySummary />
       </div>
     </div>
@@ -49,7 +55,9 @@ function PostAuthor() {
       <div className={styles["community-picture"]}></div>
       <span className={styles["community-name"]}>c/Gaming</span>
       <span style={{ color: "#424242" }}>•</span>
-      <span className={styles["author"]}>Posted by u/awesomeuser123 19 hours ago</span>
+      <span className={styles["author"]}>
+        Posted by u/awesomeuser123 19 hours ago
+      </span>
     </div>
   );
 }
@@ -72,7 +80,10 @@ function PostContent() {
     <div className={styles["post-content"]}>
       <PostAuthor />
       <div className={styles["post-message"]}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor tempora delectus odit, veritatis eius facere, nemo reprehenderit temporibus dolorem officiis repudiandae enim corporis. Ea praesentium obcaecati repudiandae eveniet sint saepe?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor tempora
+        delectus odit, veritatis eius facere, nemo reprehenderit temporibus
+        dolorem officiis repudiandae enim corporis. Ea praesentium obcaecati
+        repudiandae eveniet sint saepe?
       </div>
       <PostActions />
     </div>
@@ -101,10 +112,17 @@ function InnerContent() {
     <div className={styles["inner-content"]}>
       <span className={styles["community-name"]}>c/Gaming</span>
       <p className={styles["summary-content"]}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium nobis placeat at eaque, voluptas eos sapiente magnam, aliquam commodi maiores libero molestias dicta itaque porro iste fugiat autem nulla doloremque?
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium
+        nobis placeat at eaque, voluptas eos sapiente magnam, aliquam commodi
+        maiores libero molestias dicta itaque porro iste fugiat autem nulla
+        doloremque?
       </p>
-      <button className={`${styles["create-post"]} ${styles["btn"]}`}>Create Post</button>
-      <button className={`${styles["create-community"]} ${styles["btn"]}`}>Create Community</button>
+      <button className={`${styles["create-post"]} ${styles["btn"]}`}>
+        Create Post
+      </button>
+      <button className={`${styles["create-community"]} ${styles["btn"]}`}>
+        Create Community
+      </button>
     </div>
   );
 }
