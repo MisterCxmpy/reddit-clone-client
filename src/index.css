@@ -46,3 +46,7 @@ html {
 .no-scroll {
   overflow: hidden;
 }
+
+select, button {
+  cursor: pointer;
+}

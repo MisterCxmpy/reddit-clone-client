@@ -59,11 +59,38 @@
   color: var(--secondary-font-color);
   cursor: pointer;
 }
-.user-actions .your-communities {
+.user-actions .select {
   width: 20%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.user-actions .select .dropdown-icon {
+  font-size: 8px;
+  font-weight: 400;
+  height: 8px;
+  line-height: 8px;
+  vertical-align: middle;
+  width: 8px;
+  border-bottom: 2px solid var(--primary-font-color);
+  border-right: 2px solid var(--primary-font-color);
+  transform: rotate(45deg);
+  transform-origin: right;
+  position: absolute;
+  right: 10px;
+}
+.user-actions .your-communities {
   background: transparent;
   color: var(--primary-font-color);
   padding: 10px 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 100%;
+}
+.user-actions .your-communities:focus {
+  outline: none;
 }
 .user-actions .search-bar {
   width: 80%;

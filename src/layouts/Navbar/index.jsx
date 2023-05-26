@@ -38,9 +38,12 @@ function AppInfo() {
 function UserActions() {
   return (
     <div className={styles["user-actions"]}>
-      <select className={styles["your-communities"]}>
-        <option value="Home">Home</option>
-      </select>
+      <div className={styles["select"]}>
+        <select className={styles["your-communities"]}>
+          <option value="Home">Home</option>
+        </select>
+        <div className={styles["dropdown-icon"]} />
+      </div>
       <form className={styles["search-bar"]}>
         <AiOutlineSearch />
         <input type="text" placeholder="Search For Anything" />

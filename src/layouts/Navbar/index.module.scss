@@ -69,11 +69,39 @@
     }
   }
 
-  .your-communities {
+  .select {
     width: 20%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .dropdown-icon {
+      font-size: 8px;
+      font-weight: 400;
+      height: 8px;
+      line-height: 8px;
+      vertical-align: middle;
+      width: 8px;
+      border-bottom: 2px solid var(--primary-font-color);
+      border-right: 2px solid var(--primary-font-color);
+      transform: rotate(45deg);
+      transform-origin: right; 
+      position: absolute;
+      right: 10px;
+    }
+  }
+
+  .your-communities {
     background: transparent;
     color: var(--primary-font-color);
     padding: 10px 20px;
+    appearance: none;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   .search-bar {
