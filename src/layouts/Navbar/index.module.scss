@@ -102,6 +102,16 @@
     &:focus {
       outline: none;
     }
+
+    >option {
+      background: transparent;
+      color: red;
+      font-size: 20px;
+      
+      &:hover, &:active, &:focus {
+        background: red;
+      }
+    }
   }
 
   .search-bar {
@@ -138,6 +148,106 @@
   }
 }
 
+.user-dropdown, .select {
+  @include align-center();
+  flex-direction: row;
+  text-align: left;
+  width: 100%;
+  background: transparent;
+  padding-left: 5px;
+  cursor: pointer;
+  height: 100%;
+
+  .outer-span {
+    @include align-center();
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+
+    >span {
+      @include align-center();
+      flex-direction: row;
+      gap: 10px;
+
+      >span {
+        @include align-center();
+        flex-direction: column;
+        width: 100%;
+
+        .dropdown {
+          width: 100%;
+          max-height: 750px;
+          height: auto;
+          background: var(--primary-color);
+          position: absolute;
+          left: 0;
+          top: 32px;
+          padding-bottom: 8px;
+          padding-top: 8px;
+          overflow-y: auto;
+          border-radius: 7px;
+          border: 1px solid var(--primary-button-color);
+
+          .title {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            align-items: center;
+            padding-left: 22px;
+            height: 40px;
+            color: var(--secondary-font-color);
+          }
+
+          .option {
+            color: var(--primary-font-color);
+            display: block;
+            height: 40px;
+            width: 100%;
+            border: 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 18px;
+            align-items: center;
+            display: flex;
+            padding-right: 24px;
+            padding-left: 52px;
+            background: transparent;
+            justify-content: space-between;
+          
+            &:hover {
+              background: var(--hover-color);
+            }
+          }
+        }
+        
+        >span {
+          @include align-center();
+          justify-content: start;
+          width: 100%;
+          color: var(--primary-font-color);
+        }
+      }
+    }
+
+    .dropdown-icon {
+      font-size: 8px;
+      font-weight: 400;
+      height: 8px;
+      line-height: 8px;
+      vertical-align: middle;
+      width: 8px;
+      border-bottom: 2px solid var(--primary-font-color);
+      border-right: 2px solid var(--primary-font-color);
+      transform: rotate(45deg);
+      transform-origin: right;
+      position: absolute;
+      right: 6px;
+    }
+  }
+}
+
 .user-profile {
   width: 15%;
   gap: 10px;
@@ -158,59 +268,6 @@
     color: var(--primary-font-color);
     font-size: 14px;
     width: 100%;
-    
-    .user-dropdown {
-      @include align-center();
-      flex-direction: row;
-      text-align: left;
-      width: 100%;
-      background: transparent;
-      padding-left: 5px;
-      cursor: pointer;
-
-      .outer-span {
-        @include align-center();
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        position: relative;
-
-        >span {
-          @include align-center();
-          flex-direction: row;
-          gap: 10px;
-
-          >span {
-            @include align-center();
-            flex-direction: column;
-            width: 100%;
-            
-            >span {
-              @include align-center();
-              justify-content: start;
-              width: 100%;
-              color: var(--primary-font-color);
-            }
-          }
-        }
-
-        .dropdown-icon {
-          font-size: 8px;
-          font-weight: 400;
-          height: 8px;
-          line-height: 8px;
-          vertical-align: middle;
-          width: 8px;
-          border-bottom: 2px solid var(--primary-font-color);
-          border-right: 2px solid var(--primary-font-color);
-          transform: rotate(45deg);
-          transform-origin: right;
-          position: absolute;
-          right: 6px;
-          
-        }
-      }
-    }
   }
 
   .profile-picture {

@@ -36,14 +36,50 @@ function AppInfo() {
 }
 
 function UserActions() {
+
+  const [showDropdown, setShowDropdown] = useState(false)
+
+  const dropdownRef = useRef()
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const handleClickOutside = (event) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target) &&
+      event.target !== dropdownRef.current.previousSibling
+    ) {
+      setShowDropdown(false);
+    }
+  };
+  
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={styles["user-actions"]}>
-      <div className={styles["select"]}>
-        <select className={styles["your-communities"]}>
-          <option value="Home">Home</option>
-        </select>
-        <div className={styles["dropdown-icon"]} />
-      </div>
+      <button onClick={toggleDropdown} className={styles["select"]}>
+        <span className={styles["outer-span"]}>
+          <span>
+            <span>
+              <span className={styles["current-title"]}>Home</span>
+              <div ref={dropdownRef} className={styles["dropdown"]} style={showDropdown ? {display: "block"} : {display: "none"}}>
+                <span className={styles["title"]}>Default Communities</span>
+                <span className={styles["option"]}>Popular</span>
+              </div>
+            </span>
+          </span>
+          <div className={styles["dropdown-icon"]} />
+        </span>
+      </button>
       <form className={styles["search-bar"]}>
         <AiOutlineSearch />
         <input type="text" placeholder="Search For Anything" />
