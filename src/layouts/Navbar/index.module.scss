@@ -48,7 +48,6 @@
   width: 65%;
   gap: 15px;
 
-  > select,
   > form {
     @include input-styles;
     @include align-center();
@@ -148,6 +147,10 @@
   }
 }
 
+.select {
+  cursor: pointer !important;
+}
+
 .user-dropdown, .select {
   @include align-center();
   flex-direction: row;
@@ -188,6 +191,7 @@
           overflow-y: auto;
           border-radius: 7px;
           border: 1px solid var(--primary-button-color);
+          cursor: default;
 
           .title {
             display: flex;

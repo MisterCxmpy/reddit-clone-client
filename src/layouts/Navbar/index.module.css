@@ -37,7 +37,6 @@
   width: 65%;
   gap: 15px;
 }
-.user-actions > select,
 .user-actions > form {
   height: 42px;
   border-radius: 5px;
@@ -131,6 +130,10 @@
   background: var(--hover-color);
 }
 
+.select {
+  cursor: pointer !important;
+}
+
 .user-dropdown, .select {
   display: flex;
   align-items: center;
@@ -175,6 +178,7 @@
   overflow-y: auto;
   border-radius: 7px;
   border: 1px solid var(--primary-button-color);
+  cursor: default;
 }
 .user-dropdown .outer-span > span > span .dropdown .title, .select .outer-span > span > span .dropdown .title {
   display: flex;

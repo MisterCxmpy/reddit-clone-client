@@ -5,7 +5,6 @@ import { MdStars, MdNotificationsNone } from "react-icons/md";
 import { BsChatDots } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 import { AiOutlineSearch } from "react-icons/ai";
-import Filter from "../Filter";
 import { useAuth } from "../../contexts/authContext";
 import LoginForm from "../../components/LoginForm";
 import UserSideMenu from "../../components/UserSideMenu";
@@ -36,25 +35,24 @@ function AppInfo() {
 }
 
 function UserActions() {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef();
 
-  const [showDropdown, setShowDropdown] = useState(false)
-
-  const dropdownRef = useRef()
-
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
+  const toggleDropdown = (event) => {
+    if (!event.target.closest(`.${styles["dropdown"]}`)) {
+      setShowDropdown(!showDropdown);
+    }
   };
 
   const handleClickOutside = (event) => {
     if (
       dropdownRef.current &&
       !dropdownRef.current.contains(event.target) &&
-      event.target !== dropdownRef.current.previousSibling
+      !event.target.closest(`.${styles["select"]}`)
     ) {
       setShowDropdown(false);
     }
   };
-  
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -71,7 +69,11 @@ function UserActions() {
           <span>
             <span>
               <span className={styles["current-title"]}>Home</span>
-              <div ref={dropdownRef} className={styles["dropdown"]} style={showDropdown ? {display: "block"} : {display: "none"}}>
+              <div
+                ref={dropdownRef}
+                className={styles["dropdown"]}
+                style={showDropdown ? { display: "block" } : { display: "none" }}
+              >
                 <span className={styles["title"]}>Default Communities</span>
                 <span className={styles["option"]}>Popular</span>
               </div>
@@ -93,12 +95,18 @@ function QuickAccessButton({ icon }) {
 }
 
 function QuickAccess() {
+  const quickAccessButtons = [
+    { icon: <MdStars /> },
+    { icon: <BsChatDots /> },
+    { icon: <MdNotificationsNone /> },
+    { icon: <IoMdAdd /> },
+  ];
+
   return (
     <div className={styles["quick-access"]}>
-      <QuickAccessButton icon={<MdStars />} />
-      <QuickAccessButton icon={<BsChatDots />} />
-      <QuickAccessButton icon={<MdNotificationsNone />} />
-      <QuickAccessButton icon={<IoMdAdd />} />
+      {quickAccessButtons.map((button, index) => (
+        <QuickAccessButton key={index} icon={button.icon} />
+      ))}
     </div>
   );
 }
@@ -117,15 +125,18 @@ function UserProfile({ user }) {
   };
 
   const disableScroll = () => {
-    document.body.classList.add('no-scroll');
+    document.body.classList.add("no-scroll");
   };
 
   const enableScroll = () => {
-    document.body.classList.remove('no-scroll');
+    document.body.classList.remove("no-scroll");
   };
 
   return (
-    <div className={styles["user-profile"]} style={user ? {justifyContent: "start"} : {justifyContent: "end"}}>
+    <div
+      className={styles["user-profile"]}
+      style={user ? { justifyContent: "start" } : { justifyContent: "end" }}
+    >
       {user ? (
         <UserInfo user={user} />
       ) : (
@@ -138,21 +149,24 @@ function UserProfile({ user }) {
 function UserInfo({ user }) {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const menuRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const toggleMenu = () => {
     setShowUserMenu(!showUserMenu);
   };
 
   const handleClickOutside = (event) => {
+    
+
     if (
       menuRef.current &&
       !menuRef.current.contains(event.target) &&
-      event.target !== menuRef.current.previousSibling
+      event.target !== menuRef.current.previousSibling &&
+      !event.target.closest(`.${styles["user-dropdown"]}`)
     ) {
       setShowUserMenu(false);
     }
   };
-  
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -164,7 +178,7 @@ function UserInfo({ user }) {
 
   return (
     <div className={styles["user-info"]}>
-      <button onClick={toggleMenu} className={styles["user-dropdown"]}>
+      <button ref={buttonRef} onClick={toggleMenu} className={styles["user-dropdown"]}>
         <span className={styles["outer-span"]}>
           <span>
             <div className={styles["profile-picture"]}></div>
@@ -185,7 +199,9 @@ function LoginSignupOptions({ showLogin, toggleLogin }) {
   return (
     <div className={styles["login-signup-options"]}>
       <button className={styles["signup-btn"]}>Sign Up</button>
-      <button onClick={toggleLogin} className={styles["login-btn"]}>Log In</button>
+      <button onClick={toggleLogin} className={styles["login-btn"]}>
+        Log In
+      </button>
       <LoginForm state={showLogin} setState={toggleLogin} />
     </div>
   );
