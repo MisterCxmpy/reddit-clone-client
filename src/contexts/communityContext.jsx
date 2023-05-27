@@ -4,6 +4,7 @@ const CommunityContext  = createContext();
 
 export const CommunityProvider = ({ children }) => {
   const [commInfo, setCommInfo] = useState({});
+  const [currentCommunity, setCurrentCommunity] = useState("");
 
   const GetCommunityInfo = async (community) => {
     const response = await fetch(`http://localhost:3000/community/${community}`);
@@ -14,7 +15,7 @@ export const CommunityProvider = ({ children }) => {
   };
 
   return (
-    <CommunityContext.Provider value={{ commInfo, setCommInfo, GetCommunityInfo }}>
+    <CommunityContext.Provider value={{ commInfo, setCommInfo, GetCommunityInfo, currentCommunity, setCurrentCommunity }}>
       {children}
     </CommunityContext.Provider>
   );

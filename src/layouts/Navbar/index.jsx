@@ -36,6 +36,7 @@ function AppInfo() {
 
 function UserActions() {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(localStorage.getItem("active"))
   const dropdownRef = useRef();
 
   const toggleDropdown = (event) => {
@@ -68,14 +69,14 @@ function UserActions() {
         <span className={styles["outer-span"]}>
           <span>
             <span>
-              <span className={styles["current-title"]}>Home</span>
+              <span className={styles["current-title"]}>{activeDropdown}</span>
               <div
                 ref={dropdownRef}
                 className={styles["dropdown"]}
                 style={{ display: showDropdown ? "block" : "none" }}
               >
-                <Section title="Default Communities" option="Popular" />;
-                <Section title="Your Communities" option="Gaming" />;
+                <Section title="Default Communities" option="Popular" setShowDropdown={setShowDropdown} setActiveDropdown={setActiveDropdown} />;
+                <Section title="Your Communities" option="Gaming" setShowDropdown={setShowDropdown} setActiveDropdown={setActiveDropdown} />;
               </div>
             </span>
           </span>
@@ -90,11 +91,18 @@ function UserActions() {
   );
 }
 
-function Section({ title, option }) {
+function Section({ title, option, setShowDropdown, setActiveDropdown }) {
+
+  const changeActive = () => {
+    setActiveDropdown(option)
+    setShowDropdown(false)
+    localStorage.setItem("active", option)
+  }
+
   return (
     <div className={styles["section"]}>
       <span className={styles["title"]}>{title}</span>
-      <span className={styles["option"]}><NavLink to={`/c/${option}`}>{option}</NavLink></span>
+      <span onClick={() => {changeActive()}} className={styles["option"]}><NavLink to={`/c/${option}`}>{option}</NavLink></span>
     </div>
   );
 }

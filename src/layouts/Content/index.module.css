@@ -98,7 +98,6 @@
   width: 30%;
   position: sticky;
   top: 49px;
-  z-index: -1;
 }
 .container .content .community-summary .summary {
   width: 100%;
@@ -131,7 +130,7 @@
   height: 55px;
   font-size: 20px;
   border-radius: 7px;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 .container .content .community-summary .summary .inner-content .create-post {
   background: var(--primary-button-color);

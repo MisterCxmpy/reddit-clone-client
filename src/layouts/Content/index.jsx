@@ -6,13 +6,16 @@ import { useAuth } from "../../contexts/authContext";
 import { useEffect, useState } from "react";
 import { usePost } from "../../contexts/postContext";
 import { useCommunity } from "../../contexts/communityContext";
+import { useNavigate } from "react-router-dom";
+import ReactTimeAgo from 'react-time-ago'
 
 export default function Content({ id, create }) {
 
   const { posts, GetPosts } = usePost()
-  const { commInfo, GetCommunityInfo } = useCommunity()
+  const { commInfo, GetCommunityInfo, setCurrentCommunity } = useCommunity()
 
   useEffect(() => {
+    setCurrentCommunity(id)
     GetPosts(id)
     GetCommunityInfo(id)
   }, [id]);
@@ -21,7 +24,7 @@ export default function Content({ id, create }) {
     <div className={styles["container"]}>
       <div className={styles["content"]}>
         {create ? (
-          <CreateForm id={id}/>
+          <CreateForm id={id} />
         ) : (
           <div className={styles["posts"]}>
             {posts.length && posts
@@ -29,7 +32,7 @@ export default function Content({ id, create }) {
               : "No posts available for this community :("}
           </div>
         )}
-        <CommunitySummary commInfo={commInfo} />
+        <CommunitySummary commInfo={commInfo} id={id} />
       </div>
     </div>
   );
@@ -52,13 +55,16 @@ function Votes({ post }) {
 }
 
 function PostAuthor({ post }) {
+
+  const postedDate = new Date(post.created_at);
+
   return (
     <div className={styles["post-author"]}>
       <div className={styles["community-picture"]}></div>
       <span className={styles["community-name"]}>c/{post.community}</span>
       <span style={{ color: "#424242" }}>•</span>
       <span className={styles["author"]}>
-        Posted by u/{post.author} 19 hours ago
+        Posted by u/{post.author} {<ReactTimeAgo date={postedDate} locale="en-GB" timeStyle="round-minute"/>}
       </span>
     </div>
   );
@@ -105,14 +111,17 @@ function CommunityImage({ commInfo }) {
   return <img src={commInfo.community_image} className={styles["community-image"]}></img>;
 }
 
-function InnerContent({ commInfo }) {
+function InnerContent({ commInfo, id }) {
+
+  const navigate = useNavigate()
+
   return (
     <div className={styles["inner-content"]}>
       <span className={styles["community-name"]}>c/{commInfo.community_name}</span>
       <p className={styles["summary-content"]}>
         {commInfo.community_summary}
       </p>
-      <button className={`${styles["create-post"]} ${styles["btn"]}`}>
+      <button onClick={() => {navigate(`/c/${id}/create/`)}} className={`${styles["create-post"]} ${styles["btn"]}`}>
         Create Post
       </button>
       <button className={`${styles["create-community"]} ${styles["btn"]}`}>
@@ -122,12 +131,12 @@ function InnerContent({ commInfo }) {
   );
 }
 
-function CommunitySummary({ commInfo }) {
+function CommunitySummary({ commInfo, id }) {
   return (
     <div className={styles["community-summary"]}>
       <div className={styles["summary"]}>
         <CommunityImage commInfo={commInfo} />
-        <InnerContent commInfo={commInfo} />
+        <InnerContent commInfo={commInfo} id={id} />
       </div>
     </div>
   );

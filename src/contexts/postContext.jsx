@@ -1,5 +1,6 @@
 import React, { useState, useContext, createContext } from "react";
 import { useAuth } from "./authContext";
+import { useNavigate } from "react-router-dom";
 
 const PostContext = createContext();
 
@@ -7,6 +8,8 @@ export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState({});
 
   const { user } = useAuth();
+
+  const navigate = useNavigate()
 
   const GetPosts = async (id) => {
     const response = await fetch(`http://localhost:3000/post/c/${id}`);
@@ -35,6 +38,7 @@ export const PostProvider = ({ children }) => {
 
     if (response.ok) {
       console.log("Successfully created post")
+      navigate(`/c/${post.community}`)
     } else {
       console.log("Failed to create post")
     }

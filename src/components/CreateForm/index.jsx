@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./index.module.css";
 import { usePost } from "../../contexts/postContext";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateForm({ id }) {
   const [title, setTitle] = useState("");
@@ -19,13 +20,16 @@ export default function CreateForm({ id }) {
             onChange={(event) => setTitle(event.target.value)}
             type="text"
             className={styles["title"]}
+            placeholder="Title"
           />
           <textarea
             value={content}
             onChange={(event) => setContent(event.target.value)}
             type="text"
             className={styles["content"]}
+            placeholder="Text (optional)"
           />
+          <div className={styles["divider"]}></div>
           <input
             type="submit"
             value="Submit"

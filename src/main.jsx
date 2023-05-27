@@ -7,6 +7,12 @@ import { AuthProvider } from './contexts/authContext.jsx'
 import { PostProvider } from './contexts/postContext.jsx'
 import { CommunityProvider } from './contexts/communityContext.jsx'
 
+import TimeAgo from 'javascript-time-ago'
+
+import en from 'javascript-time-ago/locale/en.json'
+
+TimeAgo.addDefaultLocale(en)
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <AuthProvider>
