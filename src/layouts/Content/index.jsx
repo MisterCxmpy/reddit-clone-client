@@ -21,7 +21,7 @@ export default function Content({ id, create }) {
     <div className={styles["container"]}>
       <div className={styles["content"]}>
         {create ? (
-          <CreateForm />
+          <CreateForm id={id}/>
         ) : (
           <div className={styles["posts"]}>
             {posts.length && posts
@@ -101,8 +101,8 @@ function Post({ post }) {
 
 //#region Summary
 
-function CommunityImage() {
-  return <div className={styles["community-image"]}></div>;
+function CommunityImage({ commInfo }) {
+  return <img src={commInfo.community_image} className={styles["community-image"]}></img>;
 }
 
 function InnerContent({ commInfo }) {
@@ -126,7 +126,7 @@ function CommunitySummary({ commInfo }) {
   return (
     <div className={styles["community-summary"]}>
       <div className={styles["summary"]}>
-        <CommunityImage />
+        <CommunityImage commInfo={commInfo} />
         <InnerContent commInfo={commInfo} />
       </div>
     </div>

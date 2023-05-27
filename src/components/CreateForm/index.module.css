@@ -1,5 +1,52 @@
 .create-form {
   width: 70%;
   height: 800px !important;
-  background: red;
+  padding: 30px;
+  color: var(--primary-font-color);
+}
+.create-form .divider {
+  width: 100%;
+  border-bottom: 1px solid var(--secondary-font-color);
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+}
+.create-form .form {
+  width: 100%;
+  height: 70%;
+  background: var(--primary-color);
+  border-radius: 7px;
+  display: flex;
+  padding: 25px;
+}
+.create-form .form > form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+}
+.create-form .form > form > input {
+  width: 100%;
+  padding: 10px 20px;
+}
+.create-form .form > form .title {
+  height: 50px;
+}
+.create-form .form > form .title, .create-form .form > form .content, .create-form .form > form .submit {
+  padding: 5px 5px;
+  background: var(--primary-color);
+  border: 0.5px solid var(--secondary-font-color);
+  border-radius: 3px;
+  color: var(--primary-font-color);
+  font-size: 16px;
+}
+.create-form .form > form .content {
+  margin-bottom: auto;
+  height: 100%;
+  text-align: start;
+}
+.create-form .form > form .submit {
+  width: -moz-max-content;
+  width: max-content;
+  margin-left: auto;
 }/*# sourceMappingURL=index.module.css.map */

@@ -9,12 +9,12 @@ import { CommunityProvider } from './contexts/communityContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <CommunityProvider>
+    <AuthProvider>
       <PostProvider>
-        <AuthProvider>
+        <CommunityProvider>
           <App />
-        </AuthProvider>
+        </CommunityProvider>
       </PostProvider>
-    </CommunityProvider>
+    </AuthProvider>
   </BrowserRouter>
 )

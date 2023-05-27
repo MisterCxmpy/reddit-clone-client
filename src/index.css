@@ -46,3 +46,7 @@ html {
 .no-scroll {
   overflow: hidden;
 }
+
+input::focus, button:focus {
+  outline: none;
+}
