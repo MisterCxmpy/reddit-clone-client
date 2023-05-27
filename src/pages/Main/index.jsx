@@ -6,6 +6,6 @@ export default function Main() {
   const { id } = useParams()
 
   return (
-    <Content id={!id ? "popular" : id}/> 
+    <Content id={!id ? "Popular" : id}/> 
   )
 }

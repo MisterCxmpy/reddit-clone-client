@@ -68,10 +68,17 @@
             }
           }
 
+          .post-title {
+            padding: 7.5px 15px;
+            font-size: 20px;
+            color: var(--primary-font-color);
+            padding-bottom: 3.75px;
+          }
+
           .post-message {
             padding: 7.5px 15px;
             margin-bottom: auto;
-            font-size: 20px;
+            font-size: 16px;
             color: var(--primary-font-color);
           }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { MdStars, MdNotificationsNone } from "react-icons/md";
 import { BsChatDots } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
@@ -40,7 +40,7 @@ function UserActions() {
 
   const toggleDropdown = (event) => {
     if (!event.target.closest(`.${styles["dropdown"]}`)) {
-      setShowDropdown(!showDropdown);
+      setShowDropdown((prevShowDropdown) => !prevShowDropdown);
     }
   };
 
@@ -72,10 +72,10 @@ function UserActions() {
               <div
                 ref={dropdownRef}
                 className={styles["dropdown"]}
-                style={showDropdown ? { display: "block" } : { display: "none" }}
+                style={{ display: showDropdown ? "block" : "none" }}
               >
-                <span className={styles["title"]}>Default Communities</span>
-                <span className={styles["option"]}>Popular</span>
+                <Section title="Default Communities" option="Popular" />;
+                <Section title="Your Communities" option="Gaming" />;
               </div>
             </span>
           </span>
@@ -86,6 +86,15 @@ function UserActions() {
         <AiOutlineSearch />
         <input type="text" placeholder="Search For Anything" />
       </form>
+    </div>
+  );
+}
+
+function Section({ title, option }) {
+  return (
+    <div className={styles["section"]}>
+      <span className={styles["title"]}>{title}</span>
+      <span className={styles["option"]}><NavLink to={`/c/${option}`}>{option}</NavLink></span>
     </div>
   );
 }
@@ -115,7 +124,7 @@ function UserProfile({ user }) {
   const [showLogin, setShowLogin] = useState(false);
 
   const toggleLogin = () => {
-    setShowLogin(!showLogin);
+    setShowLogin((prevShowLogin) => !prevShowLogin);
 
     if (!showLogin) {
       disableScroll();
@@ -135,7 +144,7 @@ function UserProfile({ user }) {
   return (
     <div
       className={styles["user-profile"]}
-      style={user ? { justifyContent: "start" } : { justifyContent: "end" }}
+      style={{ justifyContent: user ? "start" : "end" }}
     >
       {user ? (
         <UserInfo user={user} />
@@ -152,12 +161,10 @@ function UserInfo({ user }) {
   const buttonRef = useRef(null);
 
   const toggleMenu = () => {
-    setShowUserMenu(!showUserMenu);
+    setShowUserMenu((prevShowUserMenu) => !prevShowUserMenu);
   };
 
   const handleClickOutside = (event) => {
-    
-
     if (
       menuRef.current &&
       !menuRef.current.contains(event.target) &&

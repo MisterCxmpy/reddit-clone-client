@@ -2,8 +2,26 @@ import styles from "./index.module.css";
 import { TbArrowBigUp, TbArrowBigDown } from "react-icons/tb";
 import { BsChatSquare, BsShare } from "react-icons/bs";
 import CreateForm from "../../components/CreateForm";
+import { useAuth } from "../../contexts/authContext";
+import { useEffect, useState } from "react";
 
 export default function Content({ id, create }) {
+  const [posts, setPosts] = useState({});
+
+  const GetPosts = async (id) => {
+    const response = await fetch(`http://localhost:3000/post/c/${id}`);
+
+    const posts = await response.json();
+
+    setPosts(posts);
+
+    console.log(posts)
+  };
+
+  useEffect(() => {
+    GetPosts(id);
+  }, [id]);
+
   return (
     <div className={styles["container"]}>
       <div className={styles["content"]}>
@@ -11,22 +29,11 @@ export default function Content({ id, create }) {
           <CreateForm />
         ) : (
           <div className={styles["posts"]}>
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            {posts.length && posts
+              ? posts.map((p, i) => <Post post={p} key={i}/>)
+              : "No posts available for this community :("}
           </div>
         )}
-
         <CommunitySummary />
       </div>
     </div>
@@ -35,13 +42,13 @@ export default function Content({ id, create }) {
 
 //#region Posts
 
-function Votes() {
+function Votes({ post }) {
   return (
     <div className={styles["votes"]}>
       <button>
         <TbArrowBigUp />
       </button>
-      <span>0</span>
+      <span>{post.upvotes - post.downvotes}</span>
       <button>
         <TbArrowBigDown />
       </button>
@@ -49,24 +56,24 @@ function Votes() {
   );
 }
 
-function PostAuthor() {
+function PostAuthor({ post }) {
   return (
     <div className={styles["post-author"]}>
       <div className={styles["community-picture"]}></div>
-      <span className={styles["community-name"]}>c/Gaming</span>
+      <span className={styles["community-name"]}>c/{post.community}</span>
       <span style={{ color: "#424242" }}>•</span>
       <span className={styles["author"]}>
-        Posted by u/awesomeuser123 19 hours ago
+        Posted by u/{post.author} 19 hours ago
       </span>
     </div>
   );
 }
 
-function PostActions() {
+function PostActions({ post }) {
   return (
     <div className={styles["post-actions"]}>
       <button className={styles["action"]}>
-        <BsChatSquare /> 3.2k Comments
+        <BsChatSquare /> {post.comments} Comments
       </button>
       <button className={styles["action"]}>
         <BsShare /> Share
@@ -75,26 +82,22 @@ function PostActions() {
   );
 }
 
-function PostContent() {
+function PostContent({ post }) {
   return (
     <div className={styles["post-content"]}>
-      <PostAuthor />
-      <div className={styles["post-message"]}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor tempora
-        delectus odit, veritatis eius facere, nemo reprehenderit temporibus
-        dolorem officiis repudiandae enim corporis. Ea praesentium obcaecati
-        repudiandae eveniet sint saepe?
-      </div>
-      <PostActions />
+      <PostAuthor post={post} />
+      <span className={styles["post-title"]}>{post.title}</span>
+      <span className={styles["post-message"]}>{post.content}</span>
+      <PostActions post={post} />
     </div>
   );
 }
 
-function Post() {
+function Post({ post }) {
   return (
     <div className={styles["post"]}>
-      <Votes />
-      <PostContent />
+      <Votes post={post} />
+      <PostContent post={post} />
     </div>
   );
 }

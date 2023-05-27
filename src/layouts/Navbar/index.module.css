@@ -190,7 +190,6 @@
   color: var(--secondary-font-color);
 }
 .user-dropdown .outer-span > span > span .dropdown .option, .select .outer-span > span > span .dropdown .option {
-  color: var(--primary-font-color);
   display: block;
   height: 40px;
   width: 100%;
@@ -208,6 +207,14 @@
 }
 .user-dropdown .outer-span > span > span .dropdown .option:hover, .select .outer-span > span > span .dropdown .option:hover {
   background: var(--hover-color);
+}
+.user-dropdown .outer-span > span > span .dropdown .option > a, .select .outer-span > span > span .dropdown .option > a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--primary-font-color);
+  text-decoration: none;
 }
 .user-dropdown .outer-span > span > span > span, .select .outer-span > span > span > span {
   display: flex;

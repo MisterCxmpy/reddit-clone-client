@@ -45,8 +45,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => { // check for cachedUser data to login and redirect user
     let cached = localStorage.getItem('user');
 
-    console.log(cached)
-
     if (!cached) return;
     if (cached !== 'undefined') {
       let cachedUser = JSON.parse(cached)

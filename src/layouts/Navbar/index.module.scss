@@ -204,7 +204,6 @@
           }
 
           .option {
-            color: var(--primary-font-color);
             display: block;
             height: 40px;
             width: 100%;
@@ -222,6 +221,14 @@
           
             &:hover {
               background: var(--hover-color);
+            }
+
+            > a {
+              @include align-center();
+              width: 100%;
+              height: 100%;
+              color: var(--primary-font-color);
+              text-decoration: none
             }
           }
         }

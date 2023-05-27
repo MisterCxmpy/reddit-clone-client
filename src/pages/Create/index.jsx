@@ -5,6 +5,6 @@ export default function Create() {
   const { id } = useParams()
 
   return (
-    <Content id={!id ? "popular" : id} create={true}/> 
+    <Content id={!id ? "Popular" : id} create={true}/> 
   )
 }
