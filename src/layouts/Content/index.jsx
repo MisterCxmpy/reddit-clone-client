@@ -4,22 +4,17 @@ import { BsChatSquare, BsShare } from "react-icons/bs";
 import CreateForm from "../../components/CreateForm";
 import { useAuth } from "../../contexts/authContext";
 import { useEffect, useState } from "react";
+import { usePost } from "../../contexts/postContext";
+import { useCommunity } from "../../contexts/communityContext";
 
 export default function Content({ id, create }) {
-  const [posts, setPosts] = useState({});
 
-  const GetPosts = async (id) => {
-    const response = await fetch(`http://localhost:3000/post/c/${id}`);
-
-    const posts = await response.json();
-
-    setPosts(posts);
-
-    console.log(posts)
-  };
+  const { posts, GetPosts } = usePost()
+  const { commInfo, GetCommunityInfo } = useCommunity()
 
   useEffect(() => {
-    GetPosts(id);
+    GetPosts(id)
+    GetCommunityInfo(id)
   }, [id]);
 
   return (
@@ -34,7 +29,7 @@ export default function Content({ id, create }) {
               : "No posts available for this community :("}
           </div>
         )}
-        <CommunitySummary />
+        <CommunitySummary commInfo={commInfo} />
       </div>
     </div>
   );
@@ -110,15 +105,12 @@ function CommunityImage() {
   return <div className={styles["community-image"]}></div>;
 }
 
-function InnerContent() {
+function InnerContent({ commInfo }) {
   return (
     <div className={styles["inner-content"]}>
-      <span className={styles["community-name"]}>c/Gaming</span>
+      <span className={styles["community-name"]}>c/{commInfo.community_name}</span>
       <p className={styles["summary-content"]}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium
-        nobis placeat at eaque, voluptas eos sapiente magnam, aliquam commodi
-        maiores libero molestias dicta itaque porro iste fugiat autem nulla
-        doloremque?
+        {commInfo.community_summary}
       </p>
       <button className={`${styles["create-post"]} ${styles["btn"]}`}>
         Create Post
@@ -130,12 +122,12 @@ function InnerContent() {
   );
 }
 
-function CommunitySummary() {
+function CommunitySummary({ commInfo }) {
   return (
     <div className={styles["community-summary"]}>
       <div className={styles["summary"]}>
         <CommunityImage />
-        <InnerContent />
+        <InnerContent commInfo={commInfo} />
       </div>
     </div>
   );
