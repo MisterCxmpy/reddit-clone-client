@@ -57,6 +57,8 @@ function Votes({ post }) {
 function PostAuthor({ post }) {
 
   const postedDate = new Date(post.created_at);
+  const adjustedDate = new Date(postedDate.setHours(postedDate.getHours() + 1));
+  console.log(adjustedDate);
 
   return (
     <div className={styles["post-author"]}>
@@ -64,7 +66,7 @@ function PostAuthor({ post }) {
       <span className={styles["community-name"]}>c/{post.community}</span>
       <span style={{ color: "#424242" }}>•</span>
       <span className={styles["author"]}>
-        Posted by u/{post.author} {<ReactTimeAgo date={postedDate} locale="en-GB" timeStyle="round-minute"/>}
+        Posted by u/{post.author} {<ReactTimeAgo date={adjustedDate} locale="en-GB" timeStyle="round-minute"/>}
       </span>
     </div>
   );

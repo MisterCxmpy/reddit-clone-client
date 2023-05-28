@@ -22,13 +22,16 @@ export default function CreateForm({ id }) {
             className={styles["title"]}
             placeholder="Title"
           />
-          <textarea
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-            type="text"
-            className={styles["content"]}
-            placeholder="Text (optional)"
-          />
+          <div className={styles["textarea"]}>
+            <div className={styles["editor"]}></div>
+            <textarea
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+              type="text"
+              className={styles["content"]}
+              placeholder="Text (optional)"
+            />
+          </div>
           <div className={styles["divider"]}></div>
           <input
             type="submit"
