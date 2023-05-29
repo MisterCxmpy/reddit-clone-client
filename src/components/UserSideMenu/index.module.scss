@@ -34,6 +34,34 @@
   }
 }
 
+.logout {
+  color: var(--primary-font-color);
+  display: block;
+  height: 40px;
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  align-items: center;
+  display: flex;
+  background: transparent;
+  gap: 5px;
+  align-items: center;
+  padding-left: 22px;
+
+  &:hover {
+    background: var(--hover-color);
+  }
+
+  .title-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+}
+
 .option {
   color: var(--primary-font-color);
   display: block;

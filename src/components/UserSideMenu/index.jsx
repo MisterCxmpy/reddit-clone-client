@@ -1,11 +1,14 @@
 import { forwardRef, useEffect, useState } from "react";
 import styles from "./index.module.css";
-import { BiUserCircle } from "react-icons/bi";
+import { BiUserCircle, BiLogOut } from "react-icons/bi";
 import { HiOutlineEye } from "react-icons/hi";
+import { useAuth } from "../../contexts/authContext";
 
 const UserSideMenu = forwardRef(({ state }, ref) => {
 
   const [darkMode, setDarkMode] = useState(localStorage.getItem('theme') === 'dark');
+
+  const { logout } = useAuth()
 
   useEffect(() => {
     if (darkMode) {
@@ -22,6 +25,8 @@ const UserSideMenu = forwardRef(({ state }, ref) => {
       <MyInfo />
       <div className={styles["divider"]}></div>
       <ViewOptions darkMode={darkMode} setDarkMode={setDarkMode} />
+      <div className={styles["divider"]}></div>
+      <Logout logout={logout} />
     </div>
   ) : null;
 });
@@ -57,4 +62,12 @@ function ViewOptions({ darkMode, setDarkMode}) {
       </button>
     </div>
   );
+}
+
+function Logout({ logout }) {
+  return (
+    <div className={styles["section"]}>
+      <button onClick={logout} className={styles["logout"]}><span className={styles['title-icon']}><BiLogOut /></span> Log out</button>
+    </div>
+  )
 }

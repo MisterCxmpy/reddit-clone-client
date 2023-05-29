@@ -39,7 +39,16 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null)
+    localStorage.setItem('user', null);
     navigate('/');
+  }
+
+  const getLikes = async (user) => {
+    const response = await fetch(`http://localhost:3000/vote/${user.user_id}`);
+
+    const data = await response.json()
+
+    saveUser({ ...user, likes: data})
   }
 
   useEffect(() => { // check for cachedUser data to login and redirect user
@@ -51,6 +60,7 @@ export const AuthProvider = ({ children }) => {
 
       if (!user) {
         setUser(cachedUser)
+        getLikes(cachedUser)
       }
     }
   }, []);

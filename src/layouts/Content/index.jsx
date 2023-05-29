@@ -8,10 +8,12 @@ import { usePost } from "../../contexts/postContext";
 import { useCommunity } from "../../contexts/communityContext";
 import { useNavigate } from "react-router-dom";
 import ReactTimeAgo from 'react-time-ago'
+import { useVote } from "../../contexts/voteContext";
 
 export default function Content({ id, create }) {
 
   const { posts, GetPosts } = usePost()
+  const { CreateVote } = useVote()
   const { commInfo, GetCommunityInfo, setCurrentCommunity } = useCommunity()
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export default function Content({ id, create }) {
         ) : (
           <div className={styles["posts"]}>
             {posts.length && posts
-              ? posts.map((p, i) => <Post post={p} key={i}/>)
+              ? posts.map((p, i) => <Post post={p} key={i} CreateVote={CreateVote}/>)
               : "No posts available for this community :("}
           </div>
         )}
@@ -40,10 +42,10 @@ export default function Content({ id, create }) {
 
 //#region Posts
 
-function Votes({ post }) {
+function Votes({ post, CreateVote }) {
   return (
     <div className={styles["votes"]}>
-      <button>
+      <button onClick={(e) => CreateVote(e, {post_id: post.post_id, vote_type: "upvote"})}>
         <TbArrowBigUp />
       </button>
       <span>{post.upvotes - post.downvotes}</span>
@@ -58,7 +60,6 @@ function PostAuthor({ post }) {
 
   const postedDate = new Date(post.created_at);
   const adjustedDate = new Date(postedDate.setHours(postedDate.getHours() + 1));
-  console.log(adjustedDate);
 
   return (
     <div className={styles["post-author"]}>
@@ -96,10 +97,10 @@ function PostContent({ post }) {
   );
 }
 
-function Post({ post }) {
+function Post({ post, CreateVote }) {
   return (
     <div className={styles["post"]}>
-      <Votes post={post} />
+      <Votes post={post} CreateVote={CreateVote} />
       <PostContent post={post} />
     </div>
   );
