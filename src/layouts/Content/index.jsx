@@ -2,18 +2,15 @@ import styles from "./index.module.css";
 import { TbArrowBigUp, TbArrowBigDown } from "react-icons/tb";
 import { BsChatSquare, BsShare } from "react-icons/bs";
 import CreateForm from "../../components/CreateForm";
-import { useAuth } from "../../contexts/authContext";
 import { useEffect, useState } from "react";
 import { usePost } from "../../contexts/postContext";
 import { useCommunity } from "../../contexts/communityContext";
 import { useNavigate } from "react-router-dom";
 import ReactTimeAgo from 'react-time-ago'
-import { useVote } from "../../contexts/voteContext";
 
 export default function Content({ id, create }) {
 
-  const { posts, GetPosts } = usePost()
-  const { CreateVote } = useVote()
+  const { posts, GetPosts, Vote, votes } = usePost()
   const { commInfo, GetCommunityInfo, setCurrentCommunity } = useCommunity()
 
   useEffect(() => {
@@ -21,6 +18,10 @@ export default function Content({ id, create }) {
     GetPosts(id)
     GetCommunityInfo(id)
   }, [id]);
+
+  useEffect(() => {
+    GetPosts(id)
+  }, [votes])
 
   return (
     <div className={styles["container"]}>
@@ -30,7 +31,7 @@ export default function Content({ id, create }) {
         ) : (
           <div className={styles["posts"]}>
             {posts.length && posts
-              ? posts.map((p, i) => <Post post={p} key={i} CreateVote={CreateVote}/>)
+              ? posts.map((p, i) => <Post post={p} key={i} Vote={Vote}/>)
               : "No posts available for this community :("}
           </div>
         )}
@@ -42,14 +43,14 @@ export default function Content({ id, create }) {
 
 //#region Posts
 
-function Votes({ post, CreateVote }) {
+function Votes({ post, Vote }) {
   return (
     <div className={styles["votes"]}>
-      <button onClick={(e) => CreateVote(e, {post_id: post.post_id, vote_type: "upvote"})}>
+      <button onClick={() => Vote(post, "upvotes")}>
         <TbArrowBigUp />
       </button>
       <span>{post.upvotes - post.downvotes}</span>
-      <button>
+      <button onClick={() => Vote(post, "downvotes")}>
         <TbArrowBigDown />
       </button>
     </div>
@@ -97,10 +98,10 @@ function PostContent({ post }) {
   );
 }
 
-function Post({ post, CreateVote }) {
+function Post({ post, Vote }) {
   return (
     <div className={styles["post"]}>
-      <Votes post={post} CreateVote={CreateVote} />
+      <Votes post={post} Vote={Vote} />
       <PostContent post={post} />
     </div>
   );

@@ -6,7 +6,6 @@ import './index.css'
 import { AuthProvider } from './contexts/authContext.jsx'
 import { PostProvider } from './contexts/postContext.jsx'
 import { CommunityProvider } from './contexts/communityContext.jsx'
-import { VoteProvider } from './contexts/voteContext.jsx'
 
 import TimeAgo from 'javascript-time-ago'
 
@@ -19,9 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <PostProvider>
         <CommunityProvider>
-          <VoteProvider>
-            <App />
-          </VoteProvider>
+          <App />
         </CommunityProvider>
       </PostProvider>
     </AuthProvider>

@@ -6,8 +6,9 @@ const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState({});
+  const [votes, setVotes] = useState([]);
 
-  const { user } = useAuth();
+  const { user, saveUser } = useAuth();
 
   const navigate = useNavigate()
 
@@ -44,8 +45,51 @@ export const PostProvider = ({ children }) => {
     }
   };
 
+  const UpdateVote = async (post_id, vote_type) => {
+    let options = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        vote_type: vote_type
+      }),
+    };
+
+    const response = await fetch(`http://localhost:3000/post/vote/${post_id}`, options);
+    
+    if (response.ok) {
+      console.log("Successfully updated vote")
+    } else {
+      console.log("Failed to updated vote")
+    }
+  }
+
+  const Vote = async (post, vote_type) => {
+
+    const vote_details = {
+      post_id: post.post_id,
+      post_name: post.title,
+      vote_type: vote_type,
+    }
+
+    const isPostIdPresent = user.votes.find(vote => vote.vote_type == vote_type)
+
+    if (isPostIdPresent) return
+
+    UpdateVote(post.post_id, vote_type)
+
+    try {
+      const newVote = user.votes.push(vote_details)
+      saveUser({...user, vote: newVote})
+      setVotes(votes => [...votes, post.post_id]);
+    } catch (e) {
+      console.log(e)
+    }
+
+    console.log(votes)
+  }
+
   return (
-    <PostContext.Provider value={{ posts, setPosts, GetPosts, CreatePost }}>
+    <PostContext.Provider value={{ posts, setPosts, GetPosts, CreatePost, Vote, votes }}>
       {children}
     </PostContext.Provider>
   );
