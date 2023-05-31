@@ -7,11 +7,13 @@ import { usePost } from "../../contexts/postContext";
 import { useCommunity } from "../../contexts/communityContext";
 import { useNavigate } from "react-router-dom";
 import ReactTimeAgo from 'react-time-ago'
+import { useAuth } from "../../contexts/authContext";
 
 export default function Content({ id, create }) {
 
   const { posts, GetPosts, Vote, votes } = usePost()
   const { commInfo, GetCommunityInfo, setCurrentCommunity } = useCommunity()
+  const { user } = useAuth()
 
   useEffect(() => {
     setCurrentCommunity(id)
@@ -24,6 +26,10 @@ export default function Content({ id, create }) {
   }, [votes])
 
   return (
+    <>
+    <div className={styles["banner"]}>
+      <img src={commInfo.community_image} className={styles["banner-image"]}></img>
+    </div>
     <div className={styles["container"]}>
       <div className={styles["content"]}>
         {create ? (
@@ -31,26 +37,33 @@ export default function Content({ id, create }) {
         ) : (
           <div className={styles["posts"]}>
             {posts.length && posts
-              ? posts.map((p, i) => <Post post={p} key={i} Vote={Vote}/>)
+              ? posts.map((p, i) => <Post post={p} key={i} Vote={Vote} user={user} />)
               : "No posts available for this community :("}
           </div>
         )}
         <CommunitySummary commInfo={commInfo} id={id} />
       </div>
     </div>
+    </>
   );
 }
 
 //#region Posts
 
-function Votes({ post, Vote }) {
+function Votes({ post, Vote, user }) {
+
+  const voteCheck = (vote_type) => {
+    const check = user.votes.some(vote => vote.vote_type === vote_type && vote.post_id === post.post_id);
+    return check;
+  }  
+
   return (
     <div className={styles["votes"]}>
-      <button onClick={() => Vote(post, "upvotes")}>
+      <button onClick={() => Vote(post, "upvotes")} style={voteCheck("upvotes") ? {color: "green"} : {color: "#707070"}}>
         <TbArrowBigUp />
       </button>
       <span>{post.votes}</span>
-      <button onClick={() => Vote(post, "downvotes")}>
+      <button onClick={() => Vote(post, "downvotes")} style={voteCheck("downvotes") ? {color: "red"} : null}>
         <TbArrowBigDown />
       </button>
     </div>
@@ -98,10 +111,10 @@ function PostContent({ post }) {
   );
 }
 
-function Post({ post, Vote }) {
+function Post({ post, Vote, user }) {
   return (
     <div className={styles["post"]}>
-      <Votes post={post} Vote={Vote} />
+      <Votes post={post} Vote={Vote} user={user} />
       <PostContent post={post} />
     </div>
   );
