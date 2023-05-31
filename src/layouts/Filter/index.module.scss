@@ -78,3 +78,13 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .tags {
+    display: none !important;
+  }
+
+  .filter-options {
+    width: 100% !important;
+  }
+}

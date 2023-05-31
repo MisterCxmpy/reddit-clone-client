@@ -198,7 +198,7 @@ function UserInfo({ user }) {
         <span className={styles["outer-span"]}>
           <span>
             <div className={styles["profile-picture"]}></div>
-            <span>
+            <span className={styles["user-stats"]}>
               <span>{user.username}</span>
               <span>{user.score} Score</span>
             </span>

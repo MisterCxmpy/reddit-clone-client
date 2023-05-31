@@ -296,8 +296,14 @@
   .app-info .title {
     display: none;
   }
+  .user-stats {
+    display: none !important;
+  }
+  .quick-access {
+    display: none !important;
+  }
   .user-actions {
-    width: 35%;
+    width: 70%;
     gap: 15px;
   }
   .user-actions > select,
@@ -321,5 +327,18 @@
     height: 40px;
     padding: 10px 20px;
     background: var(--primary-color);
+  }
+  .profile-picture {
+    width: 40px;
+    height: 40px;
+  }
+  .user-profile {
+    width: 10%;
+  }
+  .navbar {
+    padding: 0px 0;
+  }
+  .user-dropdown {
+    padding-left: 0;
   }
 }/*# sourceMappingURL=index.module.css.map */
