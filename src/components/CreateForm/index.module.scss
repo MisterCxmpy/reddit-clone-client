@@ -1,7 +1,7 @@
 .create-form {
   width: 70%;
   height: 800px !important;
-  padding: 30px;
+  padding: 0px 30px;
   color: var(--primary-font-color);
 
   .divider {
@@ -46,8 +46,7 @@
 
       .textarea {
         width: 100%;
-        height: 100%;
-        margin-bottom: auto;
+        margin-bottom: 26px;
         height: 100%;
         text-align: start;
         border-top-left-radius: 0;

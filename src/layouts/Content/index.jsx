@@ -6,44 +6,57 @@ import { useEffect, useState } from "react";
 import { usePost } from "../../contexts/postContext";
 import { useCommunity } from "../../contexts/communityContext";
 import { useNavigate } from "react-router-dom";
-import ReactTimeAgo from 'react-time-ago'
+import ReactTimeAgo from "react-time-ago";
 import { useAuth } from "../../contexts/authContext";
 
 export default function Content({ id, create }) {
-
-  const { posts, GetPosts, Vote, votes } = usePost()
-  const { commInfo, GetCommunityInfo, setCurrentCommunity } = useCommunity()
-  const { user } = useAuth()
+  const { posts, GetPosts, Vote, votes } = usePost();
+  const { commInfo, GetCommunityInfo, setCurrentCommunity } = useCommunity();
+  const { user } = useAuth();
 
   useEffect(() => {
-    setCurrentCommunity(id)
-    GetPosts(id)
-    GetCommunityInfo(id)
+    localStorage.setItem("id", id);
+    setCurrentCommunity(id);
+    GetPosts(id);
+    GetCommunityInfo(id);
   }, [id]);
 
   useEffect(() => {
-    GetPosts(id)
-  }, [votes])
+    GetPosts(id);
+  }, [votes]);
 
   return (
     <>
-    <div className={styles["banner"]}>
-      <img src={commInfo.community_image} className={styles["banner-image"]}></img>
-    </div>
-    <div className={styles["container"]}>
-      <div className={styles["content"]}>
-        {create ? (
-          <CreateForm id={id} />
-        ) : (
-          <div className={styles["posts"]}>
-            {posts.length && posts
-              ? posts.map((p, i) => <Post post={p} key={i} Vote={Vote} user={user} />)
-              : "No posts available for this community :("}
+      {!create ? (
+        <>
+          <div className={styles["banner"]}>
+            <img
+              src={commInfo.community_image}
+              className={styles["banner-image"]}
+            ></img>
           </div>
-        )}
-        <CommunitySummary commInfo={commInfo} id={id} />
+          <div className={styles["community"]}></div>
+        </>
+      ) : (
+        ""
+      )}
+
+      <div className={styles["container"]}>
+        <div className={styles["content"]}>
+          {create ? (
+            <CreateForm id={id} />
+          ) : (
+            <div className={styles["posts"]}>
+              {posts.length && posts
+                ? posts.map((p, i) => (
+                    <Post post={p} key={i} Vote={Vote} user={user} />
+                  ))
+                : "No posts available for this community :("}
+            </div>
+          )}
+          <CommunitySummary commInfo={commInfo} id={id} />
+        </div>
       </div>
-    </div>
     </>
   );
 }
@@ -51,19 +64,28 @@ export default function Content({ id, create }) {
 //#region Posts
 
 function Votes({ post, Vote, user }) {
-
   const voteCheck = (vote_type) => {
-    const check = user.votes.some(vote => vote.vote_type === vote_type && vote.post_id === post.post_id);
+    const check = user.votes.some(
+      (vote) => vote.vote_type === vote_type && vote.post_id === post.post_id
+    );
     return check;
-  }  
+  };
 
   return (
     <div className={styles["votes"]}>
-      <button onClick={() => Vote(post, "upvotes")} style={voteCheck("upvotes") ? {color: "#6c55f0"} : {color: "#707070"}}>
+      <button
+        onClick={() => Vote(post, "upvotes")}
+        style={
+          voteCheck("upvotes") ? { color: "#6c55f0" } : { color: "#707070" }
+        }
+      >
         <TbArrowBigUp />
       </button>
       <span>{post.votes > 0 ? post.votes : 0}</span>
-      <button onClick={() => Vote(post, "downvotes")} style={voteCheck("downvotes") ? {color: "#ff4040"} : null}>
+      <button
+        onClick={() => Vote(post, "downvotes")}
+        style={voteCheck("downvotes") ? { color: "#ff4040" } : null}
+      >
         <TbArrowBigDown />
       </button>
     </div>
@@ -71,7 +93,6 @@ function Votes({ post, Vote, user }) {
 }
 
 function PostAuthor({ post }) {
-
   const postedDate = new Date(post.created_at);
   const adjustedDate = new Date(postedDate.setHours(postedDate.getHours() + 1));
 
@@ -81,7 +102,14 @@ function PostAuthor({ post }) {
       <span className={styles["community-name"]}>c/{post.community}</span>
       <span style={{ color: "#424242" }}>•</span>
       <span className={styles["author"]}>
-        Posted by u/{post.author} {<ReactTimeAgo date={adjustedDate} locale="en-GB" timeStyle="round-minute"/>}
+        Posted by u/{post.author}{" "}
+        {
+          <ReactTimeAgo
+            date={adjustedDate}
+            locale="en-GB"
+            timeStyle="round-minute"
+          />
+        }
       </span>
     </div>
   );
@@ -125,20 +153,29 @@ function Post({ post, Vote, user }) {
 //#region Summary
 
 function CommunityImage({ commInfo }) {
-  return <img src={commInfo.community_image} className={styles["community-image"]}></img>;
+  return (
+    <img
+      src={commInfo.community_image}
+      className={styles["community-image"]}
+    ></img>
+  );
 }
 
 function InnerContent({ commInfo, id }) {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className={styles["inner-content"]}>
-      <span className={styles["community-name"]}>c/{commInfo.community_name}</span>
-      <p className={styles["summary-content"]}>
-        {commInfo.community_summary}
-      </p>
-      <button onClick={() => {navigate(`/c/${id}/create/`)}} className={`${styles["create-post"]} ${styles["btn"]}`}>
+      <span className={styles["community-name"]}>
+        c/{commInfo.community_name}
+      </span>
+      <p className={styles["summary-content"]}>{commInfo.community_summary}</p>
+      <button
+        onClick={() => {
+          navigate(`/c/${id}/create/`);
+        }}
+        className={`${styles["create-post"]} ${styles["btn"]}`}
+      >
         Create Post
       </button>
       <button className={`${styles["create-community"]} ${styles["btn"]}`}>

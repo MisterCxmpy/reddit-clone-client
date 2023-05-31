@@ -36,7 +36,7 @@ function AppInfo() {
 
 function UserActions() {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(localStorage.getItem("active"))
+  const [activeDropdown, setActiveDropdown] = useState(localStorage.getItem("id")[0].toUpperCase() + localStorage.getItem("id").slice(1).toLowerCase())
   const dropdownRef = useRef();
 
   const toggleDropdown = (event) => {
@@ -94,6 +94,7 @@ function UserActions() {
 function Section({ title, option, setShowDropdown, setActiveDropdown }) {
 
   const changeActive = () => {
+
     setActiveDropdown(option)
     setShowDropdown(false)
     localStorage.setItem("active", option)
@@ -102,7 +103,7 @@ function Section({ title, option, setShowDropdown, setActiveDropdown }) {
   return (
     <div className={styles["section"]}>
       <span className={styles["title"]}>{title}</span>
-      <span onClick={() => {changeActive()}} className={styles["option"]}><NavLink to={`/c/${option}`}>{option}</NavLink></span>
+      <span onClick={() => {changeActive()}} className={styles["option"]}><NavLink to={`/c/${option.toLowerCase()}`}>{option}</NavLink></span>
     </div>
   );
 }
