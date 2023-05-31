@@ -80,9 +80,20 @@ export const PostProvider = ({ children }) => {
       const existingVote = user.votes[existingVoteIndex]
       
       if (existingVote.vote_type === vote_type) {
-        return;
+        user.votes.splice(existingVoteIndex, 1);
+        if (vote_type === "upvotes") {
+          UpdateVote(post.post_id, "downvotes");
+          return
+        } else if (vote_type === "downvotes") {
+          UpdateVote(post.post_id, "upvotes");
+          return
+        }
+      } else {
+        user.votes[existingVoteIndex].vote_type = vote_type;
+        UpdateVote(post.post_id, vote_type);
+        return
       }
-      
+
       user.votes[existingVoteIndex].vote_type = vote_type;
       UpdateVote(post.post_id, vote_type);
     } else {

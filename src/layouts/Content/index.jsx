@@ -59,11 +59,11 @@ function Votes({ post, Vote, user }) {
 
   return (
     <div className={styles["votes"]}>
-      <button onClick={() => Vote(post, "upvotes")} style={voteCheck("upvotes") ? {color: "green"} : {color: "#707070"}}>
+      <button onClick={() => Vote(post, "upvotes")} style={voteCheck("upvotes") ? {color: "#6c55f0"} : {color: "#707070"}}>
         <TbArrowBigUp />
       </button>
-      <span>{post.votes}</span>
-      <button onClick={() => Vote(post, "downvotes")} style={voteCheck("downvotes") ? {color: "red"} : null}>
+      <span>{post.votes > 0 ? post.votes : 0}</span>
+      <button onClick={() => Vote(post, "downvotes")} style={voteCheck("downvotes") ? {color: "#ff4040"} : null}>
         <TbArrowBigDown />
       </button>
     </div>
