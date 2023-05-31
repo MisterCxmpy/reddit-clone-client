@@ -6,7 +6,7 @@ const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
   const [posts, setPosts] = useState({});
-  const [votes, setVotes] = useState([]);
+  const [votes, setVotes] = useState(0);
 
   const { user, saveUser } = useAuth();
 
@@ -61,31 +61,38 @@ export const PostProvider = ({ children }) => {
     } else {
       console.log("Failed to updated vote")
     }
+
+    setVotes(votes => votes += 1);
   }
 
   const Vote = async (post, vote_type) => {
-
     const vote_details = {
       post_id: post.post_id,
       post_name: post.title,
       vote_type: vote_type,
     }
-
-    const isPostIdPresent = user.votes.find(vote => vote.vote_type == vote_type)
-
-    if (isPostIdPresent) return
-
-    UpdateVote(post.post_id, vote_type)
-
-    try {
-      const newVote = user.votes.push(vote_details)
-      saveUser({...user, vote: newVote})
-      setVotes(votes => [...votes, post.post_id]);
-    } catch (e) {
-      console.log(e)
+  
+    const existingVoteIndex = user.votes.findIndex(vote => vote.post_id === post.post_id)
+  
+    if (existingVoteIndex !== -1) {
+      const existingVote = user.votes[existingVoteIndex]
+      
+      if (existingVote.vote_type === vote_type) {
+        return;
+      }
+      
+      user.votes[existingVoteIndex].vote_type = vote_type;
+      UpdateVote(post.post_id, vote_type);
+    } else {
+      user.votes.push(vote_details);
+      UpdateVote(post.post_id, vote_type);
     }
-
-    console.log(votes)
+  
+    try {
+      saveUser(user);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
@@ -94,5 +101,6 @@ export const PostProvider = ({ children }) => {
     </PostContext.Provider>
   );
 };
+
 
 export const usePost = () => useContext(PostContext);

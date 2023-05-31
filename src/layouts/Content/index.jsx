@@ -49,7 +49,7 @@ function Votes({ post, Vote }) {
       <button onClick={() => Vote(post, "upvotes")}>
         <TbArrowBigUp />
       </button>
-      <span>{post.upvotes - post.downvotes}</span>
+      <span>{post.votes}</span>
       <button onClick={() => Vote(post, "downvotes")}>
         <TbArrowBigDown />
       </button>
