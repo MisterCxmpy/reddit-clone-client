@@ -35,7 +35,18 @@ export default function Content({ id, create }) {
               className={styles["banner-image"]}
             ></img>
           </div>
-          <div className={styles["community"]}></div>
+          <div className={styles["community"]}>
+            <div className={styles["info"]}>
+              <img
+                src={commInfo.community_image}
+              ></img>
+              <div className={styles["names"]}>
+                <h1 className={styles["main-title"]}>r/{commInfo.community_name}</h1>
+                <h2 className={styles["sub-title"]}>r/{commInfo.community_name}</h2>
+                <button className={styles["join-btn"]}>Join Community</button>
+              </div>
+            </div>
+          </div>
         </>
       ) : (
         ""

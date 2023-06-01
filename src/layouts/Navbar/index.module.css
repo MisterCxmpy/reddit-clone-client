@@ -300,10 +300,21 @@
     display: none !important;
   }
   .quick-access {
-    display: none !important;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+    background: var(--primary-color);
+    height: 52px !important;
+  }
+  .quick-access .quick-access-btn {
+    height: 52px;
+    width: 52px;
+    font-size: 32px;
+    background: var(--primary-color);
   }
   .user-actions {
-    width: 70%;
+    width: 75%;
     gap: 15px;
   }
   .user-actions > select,
@@ -312,6 +323,12 @@
     height: 42px;
     border-radius: 5px;
     border: none;
+  }
+  .user-actions .select {
+    width: 40%;
+  }
+  .user-actions .search-bar {
+    width: 60%;
   }
   .user-actions .your-communities {
     width: 10%;
@@ -336,7 +353,7 @@
     width: 10%;
   }
   .navbar {
-    padding: 0px 0;
+    padding: 0px 5px;
   }
   .user-dropdown {
     padding-left: 0;

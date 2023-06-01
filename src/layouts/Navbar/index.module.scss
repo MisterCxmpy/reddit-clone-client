@@ -308,6 +308,7 @@
 }
 
 @media only screen and (max-width: 600px) {
+
   .app-info {
     width: 10%;
   
@@ -328,17 +329,37 @@
   }
 
   .quick-access {
-    display: none !important;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+    background: var(--primary-color);
+    height: 52px !important;
+
+    .quick-access-btn {
+      height: 52px;
+      width: 52px;
+      font-size: 32px;
+      background: var(--primary-color);
+    }
   }
 
   .user-actions {
-    width: 70%;
+    width: 75%;
     gap: 15px;
   
     > select,
     > form,
     > form > input {
       @include input-styles;
+    }
+
+    .select {
+      width: 40%;
+    }
+
+    .search-bar {
+      width: 60%;
     }
   
     .your-communities {
@@ -370,7 +391,7 @@
   }
 
   .navbar {
-    padding: 0px 0;
+    padding: 0px 5px;
   }
 
   .user-dropdown {
