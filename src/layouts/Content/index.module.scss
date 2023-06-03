@@ -273,7 +273,15 @@
   }
 
   .container {
-    margin: 48px 0;
+    margin: 20px 5px;
+
+    .content {
+      display: block;
+
+      .posts {
+        width: 100%;
+      }
+    }
   }
 
   .community-summary {

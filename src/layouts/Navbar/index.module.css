@@ -306,6 +306,7 @@
     justify-content: center;
     background: var(--primary-color);
     height: 52px !important;
+    margin-left: -5px !important;
   }
   .quick-access .quick-access-btn {
     height: 52px;

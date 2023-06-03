@@ -238,7 +238,13 @@
     font-size: 16px;
   }
   .container {
-    margin: 48px 0;
+    margin: 20px 5px;
+  }
+  .container .content {
+    display: block;
+  }
+  .container .content .posts {
+    width: 100%;
   }
   .community-summary {
     display: none;
