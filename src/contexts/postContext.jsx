@@ -90,7 +90,11 @@ export const PostProvider = ({ children }) => {
         }
       } else {
         user.votes[existingVoteIndex].vote_type = vote_type;
-        UpdateVote(post.post_id, vote_type);
+        if (vote_type === "upvotes") {
+          UpdateVote(post.post_id, "add_change");
+        } else if (vote_type === "downvotes") {
+          UpdateVote(post.post_id, "remove_change");
+        }
         return
       }
 
