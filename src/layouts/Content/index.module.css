@@ -219,6 +219,7 @@
   }
   .community {
     min-height: 110px !important;
+    padding: 0 5px;
   }
   .community .info {
     margin: 0;
