@@ -76,7 +76,7 @@ export default function Content({ id, create }) {
 
 function Votes({ post, Vote, user }) {
   const voteCheck = (vote_type) => {
-    const check = user.votes.some(
+    const check = user?.votes.some(
       (vote) => vote.vote_type === vote_type && vote.post_id === post.post_id
     );
     return check;

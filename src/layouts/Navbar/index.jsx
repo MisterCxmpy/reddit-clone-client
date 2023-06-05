@@ -134,7 +134,6 @@ function Section({ title, options, setShowDropdown, setActiveDropdown }) {
           }}
           className={styles["option"]}
         >
-          {console.log(option)}
           <NavLink to={`/c/${option.community_name}`}>{useUpperCase(option.community_name)}</NavLink>
         </span>
       ))}

@@ -21,8 +21,6 @@ export const CommunityProvider = ({ children }) => {
     const defaultCommunities = await response.json();
 
     setDefaultCommunities(defaultCommunities);
-    
-    console.log(defaultCommunities)
   }
 
   return (

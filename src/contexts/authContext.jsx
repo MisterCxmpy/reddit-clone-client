@@ -7,8 +7,18 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate()
   const [user, setUser] = useState(null);
 
+  const updateUser = async (user) => {
+    const options = { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(user) }
+
+    const response = await fetch(`http://localhost:3000/auth/${user.user_id}/update`, options);
+    const updated_user = await response.json();
+
+    if (!response.ok) throw new Error(updated_user.message);
+  }
+
   const saveUser = (user) => {
     setUser(user);
+    updateUser(user)
     localStorage.setItem('user', JSON.stringify(user));
   }
 
@@ -39,6 +49,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('user');
+    updateUser(user)
     setUser(null)
     navigate('/');
   }

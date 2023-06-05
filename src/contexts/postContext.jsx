@@ -16,7 +16,7 @@ export const PostProvider = ({ children }) => {
     const response = await fetch(`http://localhost:3000/post/c/${id}`);
     const posts = await response.json();
   
-    posts.sort((a, b) => b.votes - a.votes);
+    posts?.sort((a, b) => b.votes - a.votes);
   
     setPosts(posts);
   };
@@ -60,6 +60,7 @@ export const PostProvider = ({ children }) => {
     
     if (response.ok) {
       console.log("Successfully updated vote")
+      saveUser(user);
     } else {
       console.log("Failed to updated vote")
     }
@@ -68,6 +69,9 @@ export const PostProvider = ({ children }) => {
   }
 
   const Vote = async (post, vote_type) => {
+
+    if (!user) return;
+
     const vote_details = {
       post_id: post.post_id,
       post_name: post.title,
@@ -104,12 +108,8 @@ export const PostProvider = ({ children }) => {
       user.votes.push(vote_details);
       UpdateVote(post.post_id, vote_type);
     }
-  
-    try {
-      saveUser(user);
-    } catch (e) {
-      console.log(e);
-    }
+
+    saveUser(user);
   }
 
   return (
