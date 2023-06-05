@@ -48,11 +48,10 @@
   line-height: 18px;
 }
 .community .info .names {
-  min-height: 175px;
+  min-height: 120px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
-  padding: 30px 0;
 }
 .community .info .join-btn {
   padding: 8px 16px;
@@ -223,13 +222,14 @@
   }
   .community .info {
     margin: 0;
+    padding: 10px !important;
   }
   .community .info > img {
     width: 100px;
     height: 100px;
   }
   .community .names {
-    min-height: 160px !important;
+    min-height: 100px !important;
   }
   .community .names .main-title {
     font-size: 20px;

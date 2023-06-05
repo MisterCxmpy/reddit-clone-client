@@ -43,7 +43,8 @@ export default function Content({ id, create }) {
               <div className={styles["names"]}>
                 <h1 className={styles["main-title"]}>r/{commInfo.community_name}</h1>
                 <h2 className={styles["sub-title"]}>r/{commInfo.community_name}</h2>
-                <button className={styles["join-btn"]}>Join Community</button>
+                {!commInfo.is_default ? <button className={styles["join-btn"]}>Join Community</button> : null}
+                
               </div>
             </div>
           </div>

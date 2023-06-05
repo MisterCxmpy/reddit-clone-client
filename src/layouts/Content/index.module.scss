@@ -50,11 +50,10 @@
     }
 
     .names {
-      min-height: 175px;
+      min-height: 120px;
       display: flex;
-      justify-content: center;
+      justify-content: start;
       flex-direction: column;
-      padding: 30px 0;
     }
 
     .join-btn {
@@ -252,6 +251,7 @@
     
     .info {
       margin: 0;
+      padding: 10px !important;
 
       >img {
         width: 100px;
@@ -260,7 +260,7 @@
     }
 
     .names {
-      min-height: 160px !important;
+      min-height: 100px !important;
 
       .main-title {
         font-size: 20px;
