@@ -15,7 +15,7 @@
 .container {
   width: 525px;
   height: 525px;
-  padding: 60px;
+  padding: 20px;
   position: fixed;
   background: var(--primary-color);
   left: 50%;
@@ -38,7 +38,81 @@
   background: transparent;
   cursor: pointer;
   color: var(--primary-font-color);
+  line-height: 24px;
 }
 .container > h3 {
-  margin: 10px 0;
+  color: var(--primary-font-color);
+  font-weight: 500;
+  font-size: 16px;
+}
+.container .divider {
+  width: 100%;
+  border-bottom: 1px solid var(--secondary-font-color);
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+}
+.container .form {
+  width: 100%;
+  height: 70%;
+  background: var(--primary-color);
+  border-radius: 7px;
+  display: flex;
+  padding: 25px;
+}
+.container .form > form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+}
+.container .form > form .inputs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 25px;
+}
+.container .form > form .inputs .input-field {
+  width: 100%;
+  position: relative;
+}
+.container .form > form .inputs .submit,
+.container .form > form .inputs .input-field > input {
+  padding: 8px 30px;
+  background: var(--primary-color);
+  border: 0.5px solid var(--secondary-font-color);
+  border-radius: 3px;
+  color: var(--primary-font-color);
+  font-size: 16px;
+  width: 100%;
+}
+.container .form > form .inputs .submit:focus,
+.container .form > form .inputs .input-field > input:focus {
+  outline: none;
+}
+.container .form > form .inputs .submit {
+  cursor: pointer;
+  background: var(--accent-color);
+  color: var(--primary-font-color);
+}
+.container .form > form .inputs .input-field {
+  position: relative;
+}
+.container .form > form .inputs .input-field > span {
+  position: absolute;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: var(--primary-font-color);
+  top: -45px;
+  left: -20px;
+}
+.container .form > form .inputs .input-field .community-tag {
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  padding: 6px 12px;
+  font-size: 14px;
 }/*# sourceMappingURL=index.module.css.map */
