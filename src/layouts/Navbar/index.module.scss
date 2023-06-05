@@ -218,9 +218,17 @@
             padding-left: 52px;
             background: transparent;
             justify-content: space-between;
+            gap: 10px;
           
             &:hover {
               background: var(--hover-color);
+            }
+
+            .community-image {
+              width: 25px;
+              height: 25px;
+              object-fit: cover;
+              border-radius: 50%
             }
 
             > a {

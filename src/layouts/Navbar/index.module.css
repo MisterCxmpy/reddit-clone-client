@@ -204,9 +204,17 @@
   padding-left: 52px;
   background: transparent;
   justify-content: space-between;
+  gap: 10px;
 }
 .user-dropdown .outer-span > span > span .dropdown .option:hover, .select .outer-span > span > span .dropdown .option:hover {
   background: var(--hover-color);
+}
+.user-dropdown .outer-span > span > span .dropdown .option .community-image, .select .outer-span > span > span .dropdown .option .community-image {
+  width: 25px;
+  height: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
 }
 .user-dropdown .outer-span > span > span .dropdown .option > a, .select .outer-span > span > span .dropdown .option > a {
   display: flex;

@@ -28,6 +28,7 @@ export default function Navbar() {
         <UserActions
           defaultCommunities={defaultCommunities}
           loading={loading}
+          useUpperCase={useUpperCase}
         />
         <QuickAccess />
         <UserProfile user={user} />
@@ -46,7 +47,7 @@ function AppInfo() {
   );
 }
 
-function UserActions({ defaultCommunities, loading }) {
+function UserActions({ defaultCommunities, loading, useUpperCase }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(
     localStorage.getItem("id")[0].toUpperCase() +
@@ -97,6 +98,7 @@ function UserActions({ defaultCommunities, loading }) {
                       options={defaultCommunities}
                       setShowDropdown={setShowDropdown}
                       setActiveDropdown={setActiveDropdown}
+                      useUpperCase={useUpperCase}
                     />
                     {/* <Section title="Your Communities" options="Gaming" setShowDropdown={setShowDropdown} setActiveDropdown={setActiveDropdown} />; */}
                     ;
@@ -116,9 +118,9 @@ function UserActions({ defaultCommunities, loading }) {
   );
 }
 
-function Section({ title, options, setShowDropdown, setActiveDropdown }) {
+function Section({ title, options, setShowDropdown, setActiveDropdown, useUpperCase }) {
   const changeActive = (option) => {
-    setActiveDropdown(option);
+    setActiveDropdown(option.charAt(0).toUpperCase() + option.slice(1));
     setShowDropdown(false);
     localStorage.setItem("active", option);
   };
@@ -130,10 +132,14 @@ function Section({ title, options, setShowDropdown, setActiveDropdown }) {
         <span
           key={option.community_id}
           onClick={() => {
-            changeActive(useUpperCase(option.community_name));
+            changeActive(option.community_name);
           }}
           className={styles["option"]}
         >
+          <img
+            src={option.community_image}
+            className={styles["community-image"]}
+          ></img>
           <NavLink to={`/c/${option.community_name}`}>{useUpperCase(option.community_name)}</NavLink>
         </span>
       ))}
