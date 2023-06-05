@@ -8,15 +8,27 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { useAuth } from "../../contexts/authContext";
 import LoginForm from "../../components/LoginForm";
 import UserSideMenu from "../../components/UserSideMenu";
+import { useCommunity } from "../../contexts/communityContext";
+import useUpperCase from "../../hooks/useUpperCase";
 
 export default function Navbar() {
   const { user } = useAuth();
+  const { GetDefaultCommunities, defaultCommunities } = useCommunity();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    GetDefaultCommunities();
+    setLoading(false);
+  }, []);
 
   return (
     <>
       <div className={styles["navbar"]}>
         <AppInfo />
-        <UserActions />
+        <UserActions
+          defaultCommunities={defaultCommunities}
+          loading={loading}
+        />
         <QuickAccess />
         <UserProfile user={user} />
       </div>
@@ -34,9 +46,12 @@ function AppInfo() {
   );
 }
 
-function UserActions() {
+function UserActions({ defaultCommunities, loading }) {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(localStorage.getItem("id")[0].toUpperCase() + localStorage.getItem("id").slice(1).toLowerCase())
+  const [activeDropdown, setActiveDropdown] = useState(
+    localStorage.getItem("id")[0].toUpperCase() +
+      localStorage.getItem("id").slice(1).toLowerCase()
+  );
   const dropdownRef = useRef();
 
   const toggleDropdown = (event) => {
@@ -75,8 +90,18 @@ function UserActions() {
                 className={styles["dropdown"]}
                 style={{ display: showDropdown ? "block" : "none" }}
               >
-                <Section title="Default Communities" option="Popular" setShowDropdown={setShowDropdown} setActiveDropdown={setActiveDropdown} />;
-                <Section title="Your Communities" option="Gaming" setShowDropdown={setShowDropdown} setActiveDropdown={setActiveDropdown} />;
+                {!loading && defaultCommunities.length ? (
+                  <>
+                    <Section
+                      title="Default Communities"
+                      options={defaultCommunities}
+                      setShowDropdown={setShowDropdown}
+                      setActiveDropdown={setActiveDropdown}
+                    />
+                    {/* <Section title="Your Communities" options="Gaming" setShowDropdown={setShowDropdown} setActiveDropdown={setActiveDropdown} />; */}
+                    ;
+                  </>
+                ) : null}
               </div>
             </span>
           </span>
@@ -91,19 +116,28 @@ function UserActions() {
   );
 }
 
-function Section({ title, option, setShowDropdown, setActiveDropdown }) {
-
-  const changeActive = () => {
-
-    setActiveDropdown(option)
-    setShowDropdown(false)
-    localStorage.setItem("active", option)
-  }
+function Section({ title, options, setShowDropdown, setActiveDropdown }) {
+  const changeActive = (option) => {
+    setActiveDropdown(option);
+    setShowDropdown(false);
+    localStorage.setItem("active", option);
+  };
 
   return (
     <div className={styles["section"]}>
       <span className={styles["title"]}>{title}</span>
-      <span onClick={() => {changeActive()}} className={styles["option"]}><NavLink to={`/c/${option.toLowerCase()}`}>{option}</NavLink></span>
+      {options.map((option) => (
+        <span
+          key={option.community_id}
+          onClick={() => {
+            changeActive(useUpperCase(option.community_name));
+          }}
+          className={styles["option"]}
+        >
+          {console.log(option)}
+          <NavLink to={`/c/${option.community_name}`}>{useUpperCase(option.community_name)}</NavLink>
+        </span>
+      ))}
     </div>
   );
 }
@@ -194,7 +228,11 @@ function UserInfo({ user }) {
 
   return (
     <div className={styles["user-info"]}>
-      <button ref={buttonRef} onClick={toggleMenu} className={styles["user-dropdown"]}>
+      <button
+        ref={buttonRef}
+        onClick={toggleMenu}
+        className={styles["user-dropdown"]}
+      >
         <span className={styles["outer-span"]}>
           <span>
             <div className={styles["profile-picture"]}></div>

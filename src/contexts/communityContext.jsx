@@ -4,6 +4,7 @@ const CommunityContext  = createContext();
 
 export const CommunityProvider = ({ children }) => {
   const [commInfo, setCommInfo] = useState({});
+  const [defaultCommunities, setDefaultCommunities] = useState({});
   const [currentCommunity, setCurrentCommunity] = useState("");
 
   const GetCommunityInfo = async (community) => {
@@ -14,8 +15,18 @@ export const CommunityProvider = ({ children }) => {
     setCommInfo(commInfo);
   };
 
+  const GetDefaultCommunities = async () => {
+    const response = await fetch(`http://localhost:3000/community/c/default`);
+    
+    const defaultCommunities = await response.json();
+
+    setDefaultCommunities(defaultCommunities);
+    
+    console.log(defaultCommunities)
+  }
+
   return (
-    <CommunityContext.Provider value={{ commInfo, setCommInfo, GetCommunityInfo, currentCommunity, setCurrentCommunity }}>
+    <CommunityContext.Provider value={{ commInfo, setCommInfo, GetCommunityInfo, GetDefaultCommunities, currentCommunity, setCurrentCommunity, defaultCommunities }}>
       {children}
     </CommunityContext.Provider>
   );
