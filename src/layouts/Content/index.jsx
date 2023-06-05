@@ -8,6 +8,7 @@ import { useCommunity } from "../../contexts/communityContext";
 import { useNavigate } from "react-router-dom";
 import ReactTimeAgo from "react-time-ago";
 import { useAuth } from "../../contexts/authContext";
+import CreateCommunityForm from "../../components/CreateCommunityForm";
 
 export default function Content({ id, create }) {
   const { posts, GetPosts, Vote, votes } = usePost();
@@ -24,6 +25,8 @@ export default function Content({ id, create }) {
   useEffect(() => {
     GetPosts(id);
   }, [votes]);
+
+  
 
   return (
     <>
@@ -43,8 +46,7 @@ export default function Content({ id, create }) {
               <div className={styles["names"]}>
                 <h1 className={styles["main-title"]}>r/{commInfo.community_name}</h1>
                 <h2 className={styles["sub-title"]}>r/{commInfo.community_name}</h2>
-                {!commInfo.is_default ? <button className={styles["join-btn"]}>Join Community</button> : null}
-                
+                {!commInfo.is_default ? <button className={styles["join-btn"]}>Join Community</button> : <span className={styles["join-btn"]}>This is a Default Community</span>}
               </div>
             </div>
           </div>
@@ -176,6 +178,26 @@ function CommunityImage({ commInfo }) {
 function InnerContent({ commInfo, id }) {
   const navigate = useNavigate();
 
+  const [showCommunityForm, setShowCommunityForm] = useState(false);
+
+  const toggleForm = () => {
+    setShowCommunityForm((showCommunityForm) => !showCommunityForm);
+
+    if (!showCommunityForm) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  };
+
+  const disableScroll = () => {
+    document.body.classList.add("no-scroll");
+  };
+
+  const enableScroll = () => {
+    document.body.classList.remove("no-scroll");
+  };
+
   return (
     <div className={styles["inner-content"]}>
       <span className={styles["community-name"]}>
@@ -190,14 +212,16 @@ function InnerContent({ commInfo, id }) {
       >
         Create Post
       </button>
-      <button className={`${styles["create-community"]} ${styles["btn"]}`}>
+      <button className={`${styles["create-community"]} ${styles["btn"]}`} onClick={toggleForm}>
         Create Community
       </button>
+      <CreateCommunityForm state={showCommunityForm} setState={toggleForm} />
     </div>
   );
 }
 
 function CommunitySummary({ commInfo, id }) {
+
   return (
     <div className={styles["community-summary"]}>
       <div className={styles["summary"]}>

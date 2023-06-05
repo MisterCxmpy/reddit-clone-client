@@ -10,6 +10,10 @@
      object-fit: cover;
 }
 
+:global body.modal-open :local .community-summary {
+  position: unset !important;
+}
+
 .community {
   width: 100%;
   min-height: 175px;

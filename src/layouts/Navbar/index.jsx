@@ -183,10 +183,12 @@ function UserProfile({ user }) {
 
   const disableScroll = () => {
     document.body.classList.add("no-scroll");
+    document.body.classList.add("modal-open");
   };
 
   const enableScroll = () => {
     document.body.classList.remove("no-scroll");
+    document.body.classList.remove("modal-open");
   };
 
   return (
