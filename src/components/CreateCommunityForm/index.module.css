@@ -27,6 +27,7 @@
   flex-direction: column;
   gap: 20px;
   border-radius: 7px;
+  border: 1px solid var(--primary-button-color);
 }
 .container .close-btn {
   position: absolute;
@@ -57,7 +58,7 @@
   background: var(--primary-color);
   border-radius: 7px;
   display: flex;
-  padding: 25px;
+  padding: 25px 0px;
 }
 .container .form > form {
   display: flex;
@@ -70,15 +71,15 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 25px;
 }
 .container .form > form .inputs .input-field {
   width: 100%;
   position: relative;
+  height: 85px;
 }
 .container .form > form .inputs .submit,
 .container .form > form .inputs .input-field > input {
-  padding: 8px 30px;
+  padding: 8px 12px;
   background: var(--primary-color);
   border: 0.5px solid var(--secondary-font-color);
   border-radius: 3px;
@@ -89,6 +90,12 @@
 .container .form > form .inputs .submit:focus,
 .container .form > form .inputs .input-field > input:focus {
   outline: none;
+}
+.container .form > form .inputs .community-name-field {
+  margin-bottom: 25px;
+}
+.container .form > form .inputs .community-name-field > input {
+  padding: 8px 30px;
 }
 .container .form > form .inputs .submit {
   cursor: pointer;
@@ -107,7 +114,6 @@
   left: -20px;
 }
 .container .form > form .inputs .input-field .community-tag {
-  height: 100%;
   top: 0;
   left: 0;
   display: flex;
@@ -115,4 +121,12 @@
   justify-self: center;
   padding: 6px 12px;
   font-size: 14px;
+}
+.container .form > form .inputs .input-field .character-count {
+  top: 30px;
+  left: -20px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  font-size: 11px;
 }/*# sourceMappingURL=index.module.css.map */
