@@ -28,6 +28,7 @@
   gap: 20px;
   border-radius: 7px;
   border: 1px solid var(--primary-button-color);
+  overflow-y: auto;
 
   .close-btn {
     position: absolute;
@@ -80,6 +81,39 @@
           position: relative;
           height: 85px;
         }
+
+        .community-actions {
+          height: 70px;
+          background: #202020;
+          padding: 20px !important;
+          bottom: 0;
+          left: 0;
+          margin: -20px;
+          width: 508px;
+          display: flex;
+          align-items: center;
+          justify-content: end;
+          gap: 10px;
+
+          .btn {
+            padding: 8px 16px;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+
+          .cancel-btn {
+            background: #202020;
+            border: 1px solid var(--primary-button-color);
+            color: var(--primary-font-color);
+          }
+
+          .create-community-btn {
+            background: var(--primary-button-color);
+            color: var(--tertiary-font-color);
+          }
+        }
     
         .submit,
         .input-field > input {
@@ -103,6 +137,11 @@
             padding: 8px 30px;
           }
         }
+
+        .community-rules-field {
+          margin-bottom: 47px;
+          height: max-content;
+        }
     
         .submit {
           cursor: pointer;
@@ -111,7 +150,6 @@
         }
     
         .input-field {
-          position: relative;
 
           >span {
             position: absolute;
@@ -130,6 +168,22 @@
             justify-self: center;
             padding: 6px 12px;
             font-size: 14px;
+            height: 38px;
+          }
+
+          .rule-add {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 6px 12px;
+            height: 38px;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            background: var(--accent-color);
+            color: var(--primary-font-color);
+            font-weight: 500;
+            font-size: 15px;
+            cursor: pointer;
           }
 
           .character-count {
@@ -140,7 +194,23 @@
             justify-self: center;
             font-size: 11px;
           }
-        }   
+        } 
+        
+        .rules {
+          width: 100%;
+          height: max-content;
+          padding: 20px;
+          background: #202020;
+
+          >ol {
+            padding-left: 20px;
+
+            >li {
+              color: var(--primary-font-color);
+              font-weight: 500;
+            }
+          }
+        }
       }
     }
   }

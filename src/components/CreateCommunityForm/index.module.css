@@ -28,6 +28,7 @@
   gap: 20px;
   border-radius: 7px;
   border: 1px solid var(--primary-button-color);
+  overflow-y: auto;
 }
 .container .close-btn {
   position: absolute;
@@ -77,6 +78,35 @@
   position: relative;
   height: 85px;
 }
+.container .form > form .inputs .community-actions {
+  height: 70px;
+  background: #202020;
+  padding: 20px !important;
+  bottom: 0;
+  left: 0;
+  margin: -20px;
+  width: 508px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+.container .form > form .inputs .community-actions .btn {
+  padding: 8px 16px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.container .form > form .inputs .community-actions .cancel-btn {
+  background: #202020;
+  border: 1px solid var(--primary-button-color);
+  color: var(--primary-font-color);
+}
+.container .form > form .inputs .community-actions .create-community-btn {
+  background: var(--primary-button-color);
+  color: var(--tertiary-font-color);
+}
 .container .form > form .inputs .submit,
 .container .form > form .inputs .input-field > input {
   padding: 8px 12px;
@@ -97,13 +127,15 @@
 .container .form > form .inputs .community-name-field > input {
   padding: 8px 30px;
 }
+.container .form > form .inputs .community-rules-field {
+  margin-bottom: 47px;
+  height: -moz-max-content;
+  height: max-content;
+}
 .container .form > form .inputs .submit {
   cursor: pointer;
   background: var(--accent-color);
   color: var(--primary-font-color);
-}
-.container .form > form .inputs .input-field {
-  position: relative;
 }
 .container .form > form .inputs .input-field > span {
   position: absolute;
@@ -121,6 +153,21 @@
   justify-self: center;
   padding: 6px 12px;
   font-size: 14px;
+  height: 38px;
+}
+.container .form > form .inputs .input-field .rule-add {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 6px 12px;
+  height: 38px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background: var(--accent-color);
+  color: var(--primary-font-color);
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
 }
 .container .form > form .inputs .input-field .character-count {
   top: 30px;
@@ -129,4 +176,18 @@
   align-items: center;
   justify-self: center;
   font-size: 11px;
+}
+.container .form > form .inputs .rules {
+  width: 100%;
+  height: -moz-max-content;
+  height: max-content;
+  padding: 20px;
+  background: #202020;
+}
+.container .form > form .inputs .rules > ol {
+  padding-left: 20px;
+}
+.container .form > form .inputs .rules > ol > li {
+  color: var(--primary-font-color);
+  font-weight: 500;
 }/*# sourceMappingURL=index.module.css.map */

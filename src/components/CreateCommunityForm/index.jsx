@@ -7,12 +7,26 @@ export default function CreateCommunityForm({ state, setState }) {
 
   const [name, setName] = useState("")
   const [summary, setSummary] = useState("")
+  const [rule, setRule] = useState("")
+  const [rules, setRules] = useState([])
+  const [image, setImage] = useState("")
 
   const exit = () => {
     setName("")
     setSummary("")
+    setRule("")
+    setRules([])
+    setImage("")
     
     setState()
+  }
+
+  const addRule = () => {
+    if (!rule) return;
+
+    setRules(prev => [...prev, rule])
+
+    setRule("")
   }
 
   return state ? (
@@ -34,9 +48,26 @@ export default function CreateCommunityForm({ state, setState }) {
                 <input type="text" value={summary} onChange={(e) => setSummary(e.target.value)} required />
                 <span>Community Summary</span>
               </div>
-              <div className={`${styles["input-field"]} ${styles["community-summary-field"]}`}>
-                <input type="text" value={summary} onChange={(e) => setSummary(e.target.value)} required />
+              <div className={`${styles["input-field"]} ${styles["community-rules-field"]}`}>
+                <input type="text" value={rule} onChange={(e) => setRule(e.target.value)} maxLength={25} required />
                 <span>Community Rules</span>
+                <button type="button" onClick={addRule} className={styles["rule-add"]}>Add Rule</button>
+              </div>
+              <div className={`${styles["input-field"]} ${styles["community-rules-field"]}`}>
+                <span>Current Rules</span>
+                <div className={styles["rules"]}>
+                  <ol>
+                    {rules.map((r) => <li>{r}</li>)}
+                  </ol>
+                </div>
+              </div>
+              <div className={`${styles["input-field"]} ${styles["community-image-field"]}`}>
+                <input type="text" value={image} onChange={(e) => setImage(e.target.value)} placeholder="Enter image URL" required />
+                <span>Community Image</span>
+              </div>
+              <div className={`${styles["input-field"]} ${styles["community-actions"]}`}>
+                <button type="button" onClick={exit} className={`${styles["btn"]} ${styles["cancel-btn"]}`}>Cancel</button>
+                <button className={`${styles["btn"]} ${styles["create-community-btn"]}`}>Create Community</button>
               </div>
             </div>
           </form>
