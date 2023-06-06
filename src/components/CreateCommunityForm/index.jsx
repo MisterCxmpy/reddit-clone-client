@@ -35,7 +35,7 @@ export default function CreateCommunityForm({ state, setState }) {
   }
 
   const createCommunity = () => {
-    const communityData = {community_name: name, community_summary: summary, community_rules: rules, community_image: image, community_leader: user.user_id}
+    const communityData = {community_name: name, community_summary: summary, community_rules: rules, community_image: image, community_leader: user.username}
     CreateCommunity(communityData)
     exit()
   }

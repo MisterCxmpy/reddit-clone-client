@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const updateUser = async (user) => {
+
     const options = { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(user) }
 
     const response = await fetch(`http://localhost:3000/auth/${user.user_id}/update`, options);

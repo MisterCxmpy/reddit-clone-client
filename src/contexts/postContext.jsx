@@ -16,11 +16,13 @@ export const PostProvider = ({ children }) => {
     const response = await fetch(`http://localhost:3000/post/c/${id}`);
     const posts = await response.json();
   
-    posts?.sort((a, b) => b.votes - a.votes);
-  
-    setPosts(posts);
-  };
-  
+    if (Array.isArray(posts)) {
+      posts.sort((a, b) => b.votes - a.votes);
+      setPosts(posts);
+    } else {
+      setPosts([]);
+    }
+  };  
 
   const CreatePost = async (e, post) => {
     e.preventDefault()
