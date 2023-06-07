@@ -13,13 +13,14 @@ import useUpperCase from "../../hooks/useUpperCase";
 
 export default function Navbar() {
   const { user } = useAuth();
-  const { GetDefaultCommunities, defaultCommunities } = useCommunity();
+  const { GetDefaultCommunities, defaultCommunities, GetCommunitiesFromUser, userCommunities } = useCommunity();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     GetDefaultCommunities();
+    GetCommunitiesFromUser();
     setLoading(false);
-  }, []);
+  }, [user]);
 
   return (
     <>
@@ -29,6 +30,7 @@ export default function Navbar() {
           defaultCommunities={defaultCommunities}
           loading={loading}
           useUpperCase={useUpperCase}
+          userCommunities={userCommunities}
         />
         <QuickAccess />
         <UserProfile user={user} />
@@ -47,7 +49,7 @@ function AppInfo() {
   );
 }
 
-function UserActions({ defaultCommunities, loading, useUpperCase }) {
+function UserActions({ defaultCommunities, loading, useUpperCase, userCommunities }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(
     localStorage.getItem("id")[0].toUpperCase() +
@@ -100,8 +102,7 @@ function UserActions({ defaultCommunities, loading, useUpperCase }) {
                       setActiveDropdown={setActiveDropdown}
                       useUpperCase={useUpperCase}
                     />
-                    {/* <Section title="Your Communities" options="Gaming" setShowDropdown={setShowDropdown} setActiveDropdown={setActiveDropdown} />; */}
-                    ;
+                    <Section title="Your Communities" options={userCommunities} setShowDropdown={setShowDropdown} setActiveDropdown={setActiveDropdown} useUpperCase={useUpperCase} />
                   </>
                 ) : null}
               </div>

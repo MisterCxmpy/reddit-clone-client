@@ -7,6 +7,7 @@ const CommunityContext  = createContext();
 export const CommunityProvider = ({ children }) => {
   const [commInfo, setCommInfo] = useState({});
   const [defaultCommunities, setDefaultCommunities] = useState({});
+  const [userCommunities, setUserCommunities] = useState({});
   const [currentCommunity, setCurrentCommunity] = useState("");
   const navigate = useNavigate()
 
@@ -28,6 +29,14 @@ export const CommunityProvider = ({ children }) => {
     setDefaultCommunities(defaultCommunities);
   }
 
+  const GetCommunitiesFromUser = async () => {
+    const response = await fetch(`http://localhost:3000/community/user/${user.user_id}`);
+    
+    const userCommunities = await response.json();
+
+    setUserCommunities(userCommunities);
+  }
+
   const CreateCommunity = async (community) => {
     
     let options = {
@@ -46,7 +55,7 @@ export const CommunityProvider = ({ children }) => {
 
       user.joined_communities.push({id: data.community_id, community_name: data.community_name})
       saveUser(user);
-      
+
       JoinCommunity(data.community_id, "join")
     } else {
       console.log("Failed to create community")
@@ -73,7 +82,7 @@ export const CommunityProvider = ({ children }) => {
   
 
   return (
-    <CommunityContext.Provider value={{ commInfo, setCommInfo, GetCommunityInfo, GetDefaultCommunities, currentCommunity, setCurrentCommunity, defaultCommunities, CreateCommunity, JoinCommunity }}>
+    <CommunityContext.Provider value={{ commInfo, setCommInfo, GetCommunityInfo, GetDefaultCommunities, currentCommunity, setCurrentCommunity, defaultCommunities, CreateCommunity, JoinCommunity, userCommunities, GetCommunitiesFromUser }}>
       {children}
     </CommunityContext.Provider>
   );
